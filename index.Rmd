@@ -1,5 +1,0 @@
----
-title: "Bao's Website"
----
-
-Hello, World!

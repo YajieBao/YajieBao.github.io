@@ -1,5 +1,0 @@
----
-title: "Blogs"
----
-
-Sometimes I will share some intrresting facts about Statistics and reviews in some area, such as Lasso, distributed inference, stochastic optimization...
