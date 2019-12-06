@@ -1,0 +1,10 @@
+---
+title: "About Me"
+---
+
+- __Name:__ Yajie Bao
+- __Ocupation:__ PhD Candidate in Statistics at SJTU
+- __Hobbies__ music and movies, big fan of TBBT
+- __Research Interest:__ High Dimensional Statistics, Distributed Inference.
+
+Here is a super cool photo of me doing one of my favorite things, yawning. 
