@@ -1,9 +1,14 @@
 name: "Bao-website"
 output_dir: "."
 navbar:
-  title: "Nicks Website"
+  title: "Bao's Website"
   left:
     - text: "Home"
       href: index.html
     - text: "About Me"
       href: about.html
+    - text: "Blogs"
+      href: Blogs.html
+output:
+  html_document:
+    theme: flatly
