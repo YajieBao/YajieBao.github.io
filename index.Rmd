@@ -10,4 +10,4 @@ __About me:__ I‘m a PhD student in Statistics at [Shanghai Jiao Tong Universit
 
 __Research interests:__ includes High-Dimensional statistics, distributed inference, statistical inference of privacy-preserving data.
 
-__Email:__ <a href="baoyajie2019stat@sjtu.edu.cn?">baoyajie2019stat@sjtu.edu.cn</a>
+__Email:__ baoyajie2019stat@sjtu.edu.cn
