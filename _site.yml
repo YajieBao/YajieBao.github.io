@@ -7,8 +7,6 @@ navbar:
       href: index.html
     - text: "Research"
       href: research.html
-    - text: "Blogs"     ##### the new
-      href: Blogs.html  ##### stuff
 output:
   html_document:
     theme: paper
