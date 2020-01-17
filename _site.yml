@@ -1,14 +1,14 @@
-name: "Baos-website"
+name: "Yajie Bao"
 output_dir: "."
 navbar:
   title: "Bao's Website"
   left:
     - text: "Home"
       href: index.html
+    - text: "Research"
+      href: research.html
     - text: "Blogs"     ##### the new
       href: Blogs.html  ##### stuff
-    - text: "About Me"
-      href: about.html
 output:
   html_document:
-    theme: flatly
+    theme: paper

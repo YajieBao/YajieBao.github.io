@@ -1,7 +1,12 @@
 ---
-title: "Bao's Website"
+title: "Yajie Bao 包亚杰"
 ---
 
-Welcome, this is my boring website! 
+Welcome to my homepage!
 
-![](./figs/interstellar.jpg)
+<img src="./figs/me.jpeg" style="width:25%; border:5px solid; margin-right: 20px" align="left">
+
+
+__About me:__ I‘m a PhD student in Statistics at Shanghai Jiao Tong University. I received my B.S. degree in Statistics from East China Normal University. 
+
+__Research interests:__ includes High-Dimensional statistics, distributed inference, statistical inference of privacy-preserving data.
