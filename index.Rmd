@@ -1,7 +1,7 @@
 
 
 
-<img src="./figs/gulangyu.jpeg" style="width:30%; border:5px solid; margin-right: 20px" align="left">
+<img src="./figs/gulangyu.jpeg" style="width:35%; border:5px solid; margin-right: 20px" align="left">
 
 Welcome to my homepage!
 ---
@@ -10,4 +10,11 @@ __About me:__ I‘m a PhD student in Statistics at [Shanghai Jiao Tong Universit
 
 __Research interests:__ includes High-Dimensional statistics, distributed inference, statistical inference of privacy-preserving data.
 
+__Contact:__ room 505, No.6 Science Building, Shanghai Jiao Tong University (Minhang)
+
 __Email:__ baoyajie2019stat@sjtu.edu.cn
+
+__Teaching:__ 
+
+- Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
+
