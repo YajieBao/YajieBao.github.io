@@ -6,6 +6,8 @@ html_document:
     theme: journal
 ---
 
-__Lecture project of *Time Series Analysis*:__ Time Series Analysis of American Candy Production [PDF](./docs/report.pdf) [R code](./docs/tsproject.R) [data](./docs/candy_production.csv)
+#### Lecture project of *Time Series Analysis*.
+
+Time Series Analysis of American Candy Production [PDF](./docs/report.pdf) [R code](./docs/tsproject.R) [data](./docs/candy_production.csv)
 
 
