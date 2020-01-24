@@ -1,6 +1,0 @@
-
-### Thesis
-
-__B.S. degree:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Thesis.pdf)
-
-### Some writings 

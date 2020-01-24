@@ -1,0 +1,5 @@
+<br />
+
+__Lecture project of *Time Series Analysis*:__ Time Series Analysis of American Candy Production [PDF](./docs/report.pdf) [R code](./docs/tsproject.R) [data](./docs/candy_production.csv)
+
+

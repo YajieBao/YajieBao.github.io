@@ -1,12 +1,9 @@
+<br />
+
+<img src="./figs/gulangyu.jpeg" style="width:35%; border:3px solid; margin-right: 20px" align="right">
 
 
-
-<img src="./figs/gulangyu.jpeg" style="width:35%; border:5px solid; margin-right: 20px" align="left">
-
-Welcome to my homepage!
----
-
-__About me:__ I‘m a PhD student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
+__About me:__ I‘m currently a first-year PhD student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
 
 __Research interests:__ includes High-Dimensional statistics, distributed inference, statistical inference of privacy-preserving data.
 
@@ -14,7 +11,14 @@ __Contact:__ room 505, No.6 Science Building, Shanghai Jiao Tong University (Min
 
 __Email:__ baoyajie2019stat@sjtu.edu.cn
 
-__Teaching:__ 
+### Teaching
 
-- Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
+Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
 
+### Research
+
+__B.S. degree thesis:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Thesis.pdf)
+
+### Writings
+
+__Notes of Mathematical Statistics:__ Probability Tools [PDF](./docs/pt.pdf)
