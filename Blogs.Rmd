@@ -1,5 +1,9 @@
 ---
 title: "Study and life"
+html_document:
+    toc: true
+    toc_float: true
+    theme: journal
 ---
 
 Here I will share some life experience and study ideas...

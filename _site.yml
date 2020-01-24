@@ -9,7 +9,14 @@ navbar:
       href: Blogs.html
     - text: "Projects"
       href: projects.html
+  right:
+    - icon: fa-envelope fa-lg
+      href: mailto:<baoyajie2019stat@sjtu.edu.cn>
+    - icon: fa-github fa-lg
+      href: https://github.com/YajieBao
+    - icon: fa-weibo fa-lg
+      href: https://weibo.com/p/1005052258049505/home?from=page_100505&mod=TAB#place
 output:
   html_document:
-    theme: paper
+    theme: journal
     css: style.css

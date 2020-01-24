@@ -1,5 +1,9 @@
 ---
 title: "Projects, simulation and software"
+html_document:
+    toc: true
+    toc_float: true
+    theme: journal
 ---
 
 __Lecture project of *Time Series Analysis*:__ Time Series Analysis of American Candy Production [PDF](./docs/report.pdf) [R code](./docs/tsproject.R) [data](./docs/candy_production.csv)
