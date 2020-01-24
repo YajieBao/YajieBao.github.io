@@ -6,11 +6,11 @@ output:
 ---
 <br />
 
-<img src="./figs/gulangyu.jpeg" style="width:35%; border:3px solid; margin-right: 20px" align="right">
+<img src="./figs/gulangyu.jpeg" style="width:35%; border:3px solid; margin-left: 30px" align="right">
 
 
 ### About me 
-I‘m currently a first-year PhD student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
+I‘m currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
 
 ### Research interests
 
