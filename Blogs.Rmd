@@ -7,3 +7,5 @@ html_document:
 ---
 
 Here I will share some life experience and study ideas...
+
+1. `r Sys.Date()` [Multivariate normal Distribution: Important Facts](./blogs/multi_normal.html)

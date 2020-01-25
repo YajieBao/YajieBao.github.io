@@ -1,0 +1,120 @@
+---
+title: "Multivariate normal Distribution: Important Facts"
+author: "Bao"
+date: "1/25/2020"
+html_document:
+    theme: paper
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Multivariate normal distribution is the most important distribution in Statistics, and its properties are very useful in modern Statistical researchs. First, we need to specify the definition of Multivariate normal distribution. And there are 4 definitions of $p-$dimensional Multivariate normal distribution
+
+- Density function: 
+$$
+f(X)=(2\pi)^{-\frac{p}{2}}|\Sigma|^{-\frac{1}{2}}\exp\left\{-\frac{1}{2}(X-\mu)^T\Sigma^{-1}(X-\mu)\right\}.
+$$
+where $\Sigma$ is a positive definite matrix.
+
+- Characteristic function:
+$$
+\phi_{X}(t)=\exp \left(i t^{T} \mu-\frac{1}{2} t^{T} \Sigma t\right).
+$$
+
+- If any linear combination of $p-$dimensional random multivariate $X$ is a univariate normal random variable, i.e., $a^TX$ is univariate normal for any $a\in \mathbb{R}^p$, then $X$ is a $p-$dimensional multivariate normal distribution.
+
+- If $X_1,...,X_p$ are i.i.d. random univariate normal variables, then $X=(X_1,...,X_p)^T$ is a $p-$dimensional multivariate normal distribution.
+
+Now let's see singular or degenerate multivariate normal distributions. Suppose that $X$ is a $p-$dimensional multivariate normal distribution with mean vector $\mu$ and covariance matrix $\Sigma$ of rank $r<p$. Then there's a nonsingular matrix $B$ s.t. 
+$$
+B\Sigma B^T=\left(\begin{matrix}I_r &0\\
+0 & 0\end{matrix}\right),
+$$
+and the transformation 
+$$
+BX=V=\left(\begin{matrix}V_1\\
+V_2\end{matrix}\right)
+$$
+is a $p-$dimensional multivariate normal distribution with covariance matrix $B\Sigma B^T$. Thus the covariance matrix of $V_2$ is $0$, then there exists some $\nu_2 \in \mathbb{R}^{p-r}$ s.t. 
+$$
+V_2=\nu_2
+$$
+with probability 1. Now partition 
+$$
+B^{-1}=\left(\begin{matrix}C & D\end{matrix}\right),
+$$
+then 
+$$
+X=B^{-1}V=CV_1+DV_2.
+$$
+Therefore with probability 1,
+$$
+X=CV_1+D\nu_2
+$$
+holds, which means that $X$ is dominated by a low-dimensional random space.
+
+An important property of multivariate normal distribution is that if $(X_1,X_2)$ is multivariate normal distributed and $\operatorname{Cov}(X_1,X_2)=0$, then $X_1$ and $X_2$ are independent. The conclusion can be verified by characteristic function. However, **this property only holds for multivariate normal distribution.** Given two arbitrary normal random variables $X_1$ and $X_2$, if $\operatorname{Cov}(X_1,X_2)=0$, we can't say that $X_1$ and $X_2$ are independent.
+
+Conditional distribution of multivariate normal distribution is very important, which leads a explanation of linear regression. And the rest part of this blog will focus on the conditional distribution. Let $X$ be a $p-$dimensional Multivariate normal distribution satisfies that
+$$
+\mathbb{E}(X)=\left(\begin{matrix}\mu_1\\
+\mu_2\end{matrix}\right),\quad \operatorname{Cov}(X)=\left(\begin{matrix}\Sigma_{11} & \Sigma_{12}\\
+\Sigma_{21} & \Sigma_{22}\end{matrix}\right).
+$$
+Then given $X_3,...,X_p$, the conditional covariance matrix of $(X_1,X_2)$ is
+$$
+\Sigma_{11.2}=\Sigma_{11}-\Sigma_{12}\Sigma_{22}^{-1}\Sigma_{21}.
+$$
+ According to the inversion of blocked matrix, 
+ $$
+ \Sigma^{-1}=\left(\begin{matrix}
+ \Sigma_{11.2}^{-1} & -\Sigma_{11.2}^{-1}\Sigma_{12}\Sigma_{22}^{-1}\\
+ -\Sigma_{22}^{-1}\Sigma_{21}\Sigma_{11.2}^{-1} & \Sigma_{22}^{-1}+\Sigma_{22}^{-1}\Sigma_{21}\Sigma_{11.2}^{-1}\Sigma_{12}\Sigma_{22}^{-1}
+ \end{matrix}\right)
+ $$
+ And by the matrix theory, a matrix is a diagonal matrix if and only if the inverse of the matrix is a diagonal matrix. Therefore, 
+ $$
+ \operatorname{Cov}\left(X_{1}, X_{2} | X_{k, \neq 1, 2}\right) \neq 0
+ $$
+ is equivalent to $\omega_{12}\neq 0$ where $\omega_{12}$ is the $(1,\ 2)$ element of $\Omega=\Sigma^{-1}$. Generallly we have
+ $$
+ \operatorname{Cov}\left(X_{i}, X_{j} | X_{k}, k \neq i, j\right) \neq 0 \Leftrightarrow \omega_{i j} \neq 0.
+ $$
+And this property is the basic of the Gaussian graphical model. $\{X_1,...,X_p\}$ are some vertices, $X_i$ and $X_j$ will be connected by an edge if 
+$$
+\operatorname{Cov}\left(X_{i}, X_{j} | X_{k, \neq i, j}\right) \neq 0.
+$$
+Moreover, the regression form of $X_1$ on $X_2,...,X_p$ is
+$$
+X_1-\mu_1 = \Sigma_{1,-1}\Sigma_{-1,-1}^{-1}(X_{-1}-\mu_{-1})+\varepsilon_1,
+$$
+which can be written as
+$$
+X_1-\mu_1 = (X_{-1}-\mu_{-1})\boldsymbol{\beta}_1+\varepsilon_1,
+$$
+where $\boldsymbol{\beta}_1=(\beta_{12},...,\beta_{1p})$. Note that the first row of $\Sigma^{-1}$ is
+$$
+\left(\sigma_{11.-1}^{-1}\quad -\sigma_{11.-1}^{-1}\Sigma_{1,-1}\Sigma_{-1,-1}^{-1}\right),
+$$
+where $\sigma_{11.-1}=\sigma_{11}-\Sigma_{1,-1}\Sigma_{-1,-1}^{-1}\Sigma_{-1,1}$ and which leads that $\beta_{1j}=-\frac{\omega_{1j}}{\omega_{11}}$.
+Similarly, the regression form of $X_2$ on $X_1,...,X_p$ is
+$$
+X_2-\mu_2 = (X_{-2}-\mu_{-2})\boldsymbol{\beta}_2+\varepsilon_2,
+$$
+where
+$$
+\boldsymbol{\beta}_2=\left(-\frac{\omega_{21}}{\omega_{22}},\cdots,-\frac{\omega_{2p}}{\omega_{22}}\right)^T.
+$$
+Using the fact $\varepsilon_1$ is independent with $X_{-1}$, we have
+\begin{align*}
+\operatorname{Cov}(\varepsilon_1, \varepsilon_2)&=\operatorname{Cov}\left(X_1-\mu_1 - \Sigma_{1,-1}\Sigma_{-1,-1}^{-1}(X_{-1}-\mu_{-1}),\ \frac{\omega_{21}}{\omega_{22}}X_1\right)\\
+&=\frac{\omega_{21}}{\omega_{22}}\sigma_{11.-1}\\
+&=\frac{\omega_{21}}{\omega_{22}\omega_{11}},
+\end{align*}
+which implies that 
+$$
+\omega_{ij}= 0 \Leftrightarrow \operatorname{Cov}(\varepsilon_i, \varepsilon_j)= \frac{\omega_{ij}}{\omega_{ii}\omega_{jj}} =0.
+$$
+Therefore we can perform hypothesis test on the regression residuals to find the support of precise matrix.
