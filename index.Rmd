@@ -14,11 +14,11 @@ I‘m currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong 
 
 ### Research interests
 
-includes High-Dimensional statistics, distributed inference, statistical inference of privacy-preserving data, online learning.
+Includes High-Dimensional statistics, distributed inference, statistical inference of privacy-preserving data, online learning.
 
 ### Contact 
 
-__Address:__ Room 505, No.6 Science Building, Shanghai Jiao Tong University (Minhang)
+__Address:__ Room 505 (Table 17), No.6 Science Building, Shanghai Jiao Tong University (Minhang)
 
 __Email:__ baoyajie2019stat@sjtu.edu.cn
 
