@@ -6,6 +6,9 @@ html_document:
     theme: journal
 ---
 
-Here I will share some life experience and study ideas...
+### Here I will share some life experience and study ideas...
+
+<img src="./figs/interstellar.jpg" style="width:50%; margin-left: 10px" >
+
 
 1. `r Sys.Date()` [Multivariate normal Distribution: Important Facts](./blogs/multi_normal.html)
