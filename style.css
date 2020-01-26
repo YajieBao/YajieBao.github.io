@@ -13,11 +13,6 @@ a:link {
   color: DarkSlateBlue;
 }
 
-/* visited link */
-a:visited {
-  color: Coral;
-}
-
 /* mouse over link */
 a:hover {
   color: Navy;
