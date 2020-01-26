@@ -3,10 +3,10 @@ img {
     display: block;
     margin: 0 auto;
   }
-
 body{
   font-family: Helvetica;
-  font-size: 11pt;
+  font-size: 12pt;
+  text-align: justify;
 }
 /* unvisited link */
 a:link {

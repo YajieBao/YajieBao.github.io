@@ -1,9 +1,5 @@
 ---
 title: "Projects, simulation and software"
-html_document:
-    toc: true
-    toc_float: true
-    theme: journal
 ---
 
 #### Lecture project of *Time Series Analysis*.

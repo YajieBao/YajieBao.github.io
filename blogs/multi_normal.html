@@ -254,6 +254,28 @@ h6 {
 }
 </style>
 
+<style type="text/css">img {
+width: 400px;
+display: block;
+margin: 0 auto;
+}
+body{
+font-family: Helvetica;
+font-size: 12pt;
+text-align: justify;
+}
+
+a:link {
+color: DarkSlateBlue;
+}
+
+a:visited {
+color: Coral;
+}
+
+a:hover {
+color: Navy;
+}</style>
 
 
 
@@ -381,7 +403,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>Multivariate normal distribution is the most important distribution in Statistics, and its properties are very useful in modern Statistical researchs. First, we need to specify the definition of Multivariate normal distribution. And there are 4 definitions of <span class="math inline">\(p-\)</span>dimensional Multivariate normal distribution</p>
+<p><strong>Multivariate normal distribution</strong> is the most important distribution in Statistics, and its properties are very useful in modern Statistical researchs. First, we need to specify the definition of Multivariate normal distribution. And there are 4 definitions of <span class="math inline">\(p-\)</span>dimensional Multivariate normal distribution</p>
 <ul>
 <li><p>Density function: <span class="math display">\[
 f(X)=(2\pi)^{-\frac{p}{2}}|\Sigma|^{-\frac{1}{2}}\exp\left\{-\frac{1}{2}(X-\mu)^T\Sigma^{-1}(X-\mu)\right\}.
@@ -408,7 +430,7 @@ X=B^{-1}V=CV_1+DV_2.
 X=CV_1+D\nu_2
 \]</span> holds, which means that <span class="math inline">\(X\)</span> is dominated by a low-dimensional random space.</p>
 <p>An important property of multivariate normal distribution is that if <span class="math inline">\((X_1,X_2)\)</span> is multivariate normal distributed and <span class="math inline">\(\operatorname{Cov}(X_1,X_2)=0\)</span>, then <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent. The conclusion can be verified by characteristic function. However, <strong>this property only holds for multivariate normal distribution.</strong> Given two arbitrary normal random variables <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>, if <span class="math inline">\(\operatorname{Cov}(X_1,X_2)=0\)</span>, we can’t say that <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are independent.</p>
-<p>Conditional distribution of multivariate normal distribution is very important, which leads a explanation of linear regression. And the rest part of this blog will focus on the conditional distribution. Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(p-\)</span>dimensional Multivariate normal distribution satisfies that <span class="math display">\[
+<p>Conditional distribution of multivariate normal distribution is very important, which leads a explanation of <a href="http://www.stat.yale.edu/Courses/1997-98/101/linreg.htm">linear regression</a>. And the rest part of this blog will focus on the conditional distribution. Let <span class="math inline">\(X\)</span> be a <span class="math inline">\(p-\)</span>dimensional Multivariate normal distribution satisfies that <span class="math display">\[
 \mathbb{E}(X)=\left(\begin{matrix}\mu_1\\
 \mu_2\end{matrix}\right),\quad \operatorname{Cov}(X)=\left(\begin{matrix}\Sigma_{11} &amp; \Sigma_{12}\\
 \Sigma_{21} &amp; \Sigma_{22}\end{matrix}\right).
@@ -423,7 +445,7 @@ X=CV_1+D\nu_2
  \operatorname{Cov}\left(X_{1}, X_{2} | X_{k, \neq 1, 2}\right) \neq 0
  \]</span> is equivalent to <span class="math inline">\(\omega_{12}\neq 0\)</span> where <span class="math inline">\(\omega_{12}\)</span> is the <span class="math inline">\((1,\ 2)\)</span> element of <span class="math inline">\(\Omega=\Sigma^{-1}\)</span>. Generallly we have <span class="math display">\[
  \operatorname{Cov}\left(X_{i}, X_{j} | X_{k}, k \neq i, j\right) \neq 0 \Leftrightarrow \omega_{i j} \neq 0.
- \]</span> And this property is the basic of the Gaussian graphical model. <span class="math inline">\(\{X_1,...,X_p\}\)</span> are some vertices, <span class="math inline">\(X_i\)</span> and <span class="math inline">\(X_j\)</span> will be connected by an edge if <span class="math display">\[
+ \]</span> And this property is the basic of the <a href="https://en.wikipedia.org/wiki/Graphical_models_for_protein_structure">Gaussian graphical model</a>. <span class="math inline">\(\{X_1,...,X_p\}\)</span> are some vertices, <span class="math inline">\(X_i\)</span> and <span class="math inline">\(X_j\)</span> will be connected by an edge if <span class="math display">\[
 \operatorname{Cov}\left(X_{i}, X_{j} | X_{k, \neq i, j}\right) \neq 0.
 \]</span> Moreover, the regression form of <span class="math inline">\(X_1\)</span> on <span class="math inline">\(X_2,...,X_p\)</span> is <span class="math display">\[
 X_1-\mu_1 = \Sigma_{1,-1}\Sigma_{-1,-1}^{-1}(X_{-1}-\mu_{-1})+\varepsilon_1,
@@ -441,7 +463,7 @@ X_2-\mu_2 = (X_{-2}-\mu_{-2})\boldsymbol{\beta}_2+\varepsilon_2,
 &amp;=\frac{\omega_{21}}{\omega_{22}\omega_{11}},
 \end{align*}\]</span> which implies that <span class="math display">\[
 \omega_{ij}= 0 \Leftrightarrow \operatorname{Cov}(\varepsilon_i, \varepsilon_j)= \frac{\omega_{ij}}{\omega_{ii}\omega_{jj}} =0.
-\]</span> Therefore we can perform hypothesis test on the regression residuals to find the support of precise matrix.</p>
+\]</span> <strong>Therefore we can perform hypothesis test on the regression residuals to find the support of precise matrix.</strong></p>
 
 
 
