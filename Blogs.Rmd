@@ -6,8 +6,8 @@ html_document:
     theme: journal
 ---
 
-### Here I will share some life experiences and study ideas...
-
 #### 2020-01-25 [Multivariate normal Distribution: Important Facts](./blogs/multi_normal.html)
 
 **Multivariate normal distribution** is the most important distribution in Statistics, and its properties are very useful in modern Statistical research. And this blog talks about 4 definitions and the trap of independent normal variables. At last, I give some important conclusions of conditional distribution and their applications in the Gaussian graphical model.
+
+
