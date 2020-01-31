@@ -22,4 +22,3 @@ navbar:
 output:
   html_document:
     theme: journal
-    css: style.css
