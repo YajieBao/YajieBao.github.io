@@ -12,6 +12,9 @@ body{
 a:link {
   color: DarkSlateBlue;
 }
+a:visited {
+  color: DarkSlateBlue;
+}
 
 /* mouse over link */
 a:hover {
