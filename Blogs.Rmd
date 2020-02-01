@@ -10,4 +10,6 @@ html_document:
 
 **Multivariate normal distribution** is the most important distribution in Statistics, and its properties are very useful in modern Statistical research. And this blog talks about 4 definitions and the trap of independent normal variables. At last, I give some important conclusions of conditional distribution and their applications in the Gaussian graphical model.
 
+#### 2020-02-01 [Bayes Estimator and Minimax Estimation](./blogs/minimax.html)
 
+**Minimax theory** is quite common in statistical research papers, which gives an optimal estimation. This blog is my notes of studying minimax theory through book *Theory of Point Estimation* and *CMU STAT 705*.
