@@ -32,8 +32,13 @@ __B.S. degree thesis:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Th
 
 ### Writings
 
-#### Notes of Mathematical Statistics: 
+#### Notes of Mathematical Statistics
 
 - Probability Tools [PDF](./docs/pt.pdf)
 - Theoretical Results of Lasso Solutions [PDF](./docs/lasso.pdf)
 - Stochastic Optimization [PDF](./docs/stop.pdf)
+
+#### Notes of optimization
+
+  - Convex optimization [PDF](./docs/Convex Optimization.pdf)
+  
