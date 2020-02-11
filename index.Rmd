@@ -3,32 +3,33 @@ title: "Yajie Bao 包亚杰"
 ---
 <div class = "leftcolumn">
 ### About me 
-I‘m currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
+I'm currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
 </div>
 
 <div class = "rightcolumn">
-<img src="./figs/gulangyu.jpeg" style="width:100%; margin-left: 30px; 
-margin-top: 30px; margin-bottom: 10px" align="right">
-**Gulangyu, Xiamen, 2020**
+<img src="./figs/gulangyu.jpeg" style="width:120%; margin-left: 20px; 
+margin-top: 20px; margin-bottom: 0px" align="right">
 </div>
-
-### Research interests
-
-Includes High-Dimensional statistics, distributed inference, statistical inference of privacy-preserving data, online learning.
 
 ### Contact 
 
-__Address:__ Room 505 (Table 17), No.6 Science Building, Shanghai Jiao Tong University (Minhang)
+__Address:__ Room 505 (Table 17), No.6 Science Building, Shanghai Jiao Tong University (Minhang District)
 
 __Email:__ baoyajie2019stat@sjtu.edu.cn
 
 __Mobile:__ (+86)13162161186
 
+### Research interests
+
+  - High-Dimensional statistics
+  - Distributed inference
+  - Statistical inference of privacy-preserving data
+  - Online learning
+
 ### Teaching
 
-Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
-
-Recitation Instructor Spring 2020, **Mathematical Statistics**
+  - Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
+  - Recitation Instructor Spring 2020, **Mathematical Statistics**
 
 ### Research
 

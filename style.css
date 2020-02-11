@@ -1,24 +1,33 @@
-img {
-    width: 400px;
-    display: block;
-    margin: 0 auto;
-  }
 
-body{
-  font-family: Helvetica;
-  font-size: 11pt;
+body {
+  margin: 0;
+  font-family: "cursive";
+  font-size: 12pt;
+  text-align: left;
+  color: black;
 }
+section {
+        background: black;
+        color: white;
+        border-radius: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%) }
+
 /* unvisited link */
 a:link {
-  color: DarkSlateBlue;
+  color: Blue;
 }
 a:visited {
-  color: DarkSlateBlue;
+  color: Blue;
 }
 
 /* mouse over link */
 a:hover {
-  color: Navy;
+  color: Blue;
 }
 /* Create two unequal columns that floats next to each other */
 .leftcolumn {   
