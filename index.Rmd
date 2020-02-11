@@ -1,14 +1,16 @@
 ---
 title: "Yajie Bao 包亚杰"
 ---
-<br />
+<div class = "leftcolumn">
+### About me 
+I‘m currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
+</div>
+
 <div class = "rightcolumn">
-<img src="./figs/gulangyu.jpeg" style="width:200%; border:3px solid; margin-left: 30px; 
+<img src="./figs/gulangyu.jpeg" style="width:100%; margin-left: 30px; 
 margin-top: 30px; margin-bottom: 10px" align="right">
 **Gulangyu, Xiamen, 2020**
 </div>
-### About me 
-I‘m currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
 
 ### Research interests
 
@@ -25,6 +27,8 @@ __Mobile:__ (+86)13162161186
 ### Teaching
 
 Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
+
+Recitation Instructor Spring 2020, **Mathematical Statistics**
 
 ### Research
 
