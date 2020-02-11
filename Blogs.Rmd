@@ -1,5 +1,5 @@
 ---
-title: "Study and life"
+title: "Study blogs"
 html_document:
     toc: true
     toc_float: true
