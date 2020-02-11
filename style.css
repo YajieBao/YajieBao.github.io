@@ -6,15 +6,16 @@ div.navbar-collapse ul.navbar-nav li {
 
 body {
   margin: 0;
-  font-family: Gill Sans Extrabold, cursive;
   font-size: 13pt;
   text-align: left;
   color: black;
+  font-family: cursive;
 }
+
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: Gill Sans Extrabold, cursive, fangsong;
+  font-family: cursive, STFangsong;
   font-weight: 900;
   line-height: 1.1;
 }
