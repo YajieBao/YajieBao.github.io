@@ -1,0 +1,54 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Anderson(1958)]{anderson1958introduction}
+T.~W. Anderson.
+\newblock \emph{An introduction to multivariate statistical analysis}.
+\newblock Wiley, New York, 1958.
+
+\bibitem[Bickel and Levina(2008)]{Bickel2008thres}
+P.~J. Bickel and E.~Levina.
+\newblock {Covariance regularization by thresholding}.
+\newblock \emph{Annals of Statistics}, 36\penalty0 (6):\penalty0 2577--2604,
+  2008.
+
+\bibitem[Cai and Liu(2011)]{Cai2011}
+T.~Cai and W.~Liu.
+\newblock {Adaptive thresholding for sparse covariance matrix estimation}.
+\newblock \emph{Journal of the American Statistical Association}, 106\penalty0
+  (494):\penalty0 672--684, 2011.
+
+\bibitem[Donoho and Johnstone(1994)]{donoho1994ideal}
+D.~L. Donoho and J.~M. Johnstone.
+\newblock Ideal spatial adaptation by wavelet shrinkage.
+\newblock \emph{Biometrika}, 81\penalty0 (3):\penalty0 425--455, 1994.
+
+\bibitem[Fan and Li(2001)]{Fan2001}
+J.~Fan and R.~Li.
+\newblock {Variable selection via nonconcave penalized likelihood and its
+  oracle properties}.
+\newblock \emph{Journal of the American Statistical Association}, 96\penalty0
+  (456):\penalty0 1348--1360, 2001.
+
+\bibitem[Johnstone(1986)]{Johnstone1986}
+Johnstone.
+\newblock {On minimax estimation of sparse normal mean vector}.
+\newblock \emph{Annals of Statistics}, 14\penalty0 (2):\penalty0 590--606,
+  1986.
+
+\bibitem[Shao(2003)]{shao2003mathematical}
+J.~Shao.
+\newblock \emph{Mathematical statistics}.
+\newblock Springer, 2003.
+
+\bibitem[Vershynin(2018)]{vershynin2018high}
+R.~Vershynin.
+\newblock \emph{High-dimensional probability: An introduction with applications
+  in data science}, volume~47.
+\newblock Cambridge university press, 2018.
+
+\end{thebibliography}

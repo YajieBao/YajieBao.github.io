@@ -1,0 +1,358 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{tocloft,lipsum,pgffor}
+
+\setcounter{tocdepth}{2}% Include up to \subsubsection in ToC
+
+
+\usepackage{hyperref}       % hyperlinks
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	citecolor = red
+}
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}		% Can be removed after putting your text content
+\usepackage{amsmath,graphicx}
+\usepackage[linesnumbered,boxed,ruled,commentsnumbered]{algorithm2e}%%算法包，注意设置所需可选项
+
+%\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\numberwithin{equation}{section}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% set page geometry
+\usepackage[verbose=true,letterpaper]{geometry}
+\AtBeginDocument{
+	\newgeometry{
+		textheight=9in,
+		textwidth=6.5in,
+		top=1in,
+		headheight=14pt,
+		headsep=25pt,
+		footskip=30pt
+	}
+}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\flushbottom
+%\sloppy
+
+% float placement
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+
+\begin{document}
+\title{Stochastic Optimization}
+
+\author{Yajie Bao\thanks{Department of Mathematics, Shanghai Jiao Tong University, Eamil: baoyajie2019stat@sjtu.edu.cn}}
+%\address{Shanghai Jiao Tong University}
+%\email{baoyajie2019stat@sjtu.edu.cn}
+\maketitle
+For random sample $X_i,i=1,2,...,n$ and lost function $f(X,\beta)$, denote the real estimate of $\beta$ by $\beta^{*}$, which can be obtained by
+$$
+\min_{\beta \in \mathbb R^p} \mathbb Ef(X,\beta).
+$$
+And denote the estimate of $\beta$ based on sample by $\hat \beta$, which can be obtained by
+$$
+\min_{\beta \in \mathbb R^p}\frac{1}{n}\sum_{i=1}^nf(X_i,\beta).
+$$
+\begin{lemma}\label{lemma 5.1}
+	For convex function $f(x)$, $x^{*}$ is the global minimizer of $f(x)$. If for any $x \in \{x:|x-\tilde x|^2= a\}$, s.t., $f(x)\geq f(\tilde x)$, then
+	$$
+	|x^{*}-\tilde x|\leq a.
+	$$
+\end{lemma}
+\begin{proof}
+	If there exists $x^{'}$ such that $|x^{'}-\tilde x|^2>a$ and $f(x^{'})\leq f(x^{*})$. By the convexity of $f$, we have 
+	$$
+	f(\alpha x^{'}+(1-\alpha) \tilde x)\leq \alpha f(x^{'})+(1-\alpha)f(\tilde x)< f(\tilde x),
+	$$
+	where $0<\alpha<1$. Note that
+	$$|\alpha x^{'}+(1-\alpha) \tilde x-\tilde x|=\alpha|x^{'}-\tilde x|,$$
+	let $\alpha=|x^{'}-\tilde x|/|x^{*}-\tilde x|$, then $|\alpha x^{'}+(1-\alpha) \tilde x-\tilde x|=a$. But
+	$$
+	f(\alpha x^{'}+(1-\alpha) \tilde x)< f(\tilde x),
+	$$
+	which is a contradiction.
+\end{proof}
+
+\begin{theorem}
+	If $|\beta-\beta^{*}|=O_p(\frac{1}{\sqrt n})$ and $f(x)$ is $\mu$-strongly convex, then $|\hat \beta-\beta^{*}|=O_p(\frac{1}{\sqrt n})$.
+\end{theorem} 
+\begin{proof}
+	Perform Taylor expansion on $f(X,\beta)$ with respective to $\beta$,
+	$$
+	f(X,\beta)=f(X,\beta^{*})+\partial f(X,\beta^{*})^{T}(\beta-\beta^{*})+\frac{1}{2} (\beta-\beta^{*})^{T}\partial^2 f(X,\tilde\beta)(\beta-\beta^{*}),
+	$$
+	where $|\tilde \beta-\beta ^{*}|\leq |\beta-\beta^{*}|$. Use the fact that $E\partial f(X,\beta^{*})=0$, we have
+	$$
+	\begin{aligned}
+	\frac{1}{n}\sum_{i=1}^nf(X_i,\beta)&=\frac{1}{n}\sum_{i=1}^nf(X_i,\beta^{*})+\frac{1}{n}\sum_{i=1}^n\left[\partial f(X_i,\beta^{*})-E\partial f(X_i,\beta^{*})\right]^{T}(\beta-\beta^{*})\\
+	&+\frac{1}{2n}(\beta-\beta^{*})^{T}\left(\sum_{i=1}^n \partial^2 f(X_i,\tilde\beta)\right)(\beta-\beta^{*})\\
+	&\geq \frac{1}{n}\sum_{i=1}^nf(X_i,\beta^{*})+O_p(\frac{1}{\sqrt n})\frac{C}{\sqrt n}+\frac{\mu C^2}{n},
+	\end{aligned}
+	$$
+	where $C$ is a constant (positive or negative). If we set $|C|$ sufficient large, then 
+	$$
+	\frac{1}{n}\sum_{i=1}^nf(X_i,\beta)\geq \frac{1}{n}\sum_{i=1}^nf(X_i,\beta^{*}).
+	$$
+	Then the result follows from the Lemma \ref{lemma 5.1}.
+\end{proof}
+
+\section{Stochastic gradient descent}
+
+The optimization problem is
+$$
+\min_{\boldsymbol{x}} \quad F(\boldsymbol{x})=\mathbb{E}[f(\boldsymbol{x} ; \boldsymbol{\xi})],
+$$
+where $\boldsymbol{\xi}$ is random and $f(\boldsymbol{x} ; \boldsymbol{\xi})$ is convex for every $\boldsymbol{\xi}$. The SGD iteration step is
+$$
+\boldsymbol{x}^{t+1}=\boldsymbol{x}^{t}-\eta_{t} \boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right),
+$$
+where $\boldsymbol{g}\left(\boldsymbol{x}^{t}\right)$ is an unbiased estimate of $\nabla F\left(\boldsymbol{x}^{t}\right)$, i.e., 
+$\mathbb{E}\left[\boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right)\right]=\nabla F\left(\boldsymbol{x}^{t}\right)$.
+The empirical risk minimization is
+$$
+\min_{\boldsymbol{x}} \quad F(\boldsymbol{x}):=\frac{1}{n} \sum_{i=1}^{n} f\left(\boldsymbol{x} ;\boldsymbol{\xi}_i\right),
+$$
+for $t=0,1,...$ choose $i_t$ uniformly at random then update $x^{t}$ by
+$$
+\boldsymbol{x}^{t+1}=\boldsymbol{x}^{t}-\eta_{t} \nabla_{\boldsymbol{x}} f\left(\boldsymbol{x}^{t} ;\boldsymbol{\xi}_{i_t}\right).
+$$
+\begin{assumption} \label{assumption 5.3}
+	Given $\left\{\xi^{0}, \cdots, \xi^{t-1}\right\}$, $g\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right)$ is an unbiased estimate of $\nabla F\left(\boldsymbol{x}^{t}\right)$; And for all $x$, we have $\mathbb{E}\left[\|g(\boldsymbol{x} ; \boldsymbol{\xi})\|_{2}^{2}\right] \leq \sigma_{\mathrm{g}}^{2}$.
+\end{assumption}
+\begin{theorem}
+	Under Assumption \ref{assumption 5.3},  suppose $F$ is $\mu$-strongly convex and the above assumptions are satisfied. If $\eta_{t}=\frac{\theta}{t+1}$ for some $\theta>\frac{1}{2 \mu}$, then SGD achieves
+	$$
+	\mathbb{E}\left[\left\|\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right] \leq \frac{c_{\theta}}{t+1}
+	$$
+	where $c_{\theta}=\max \left\{\frac{2 \theta^{2} \sigma_{\mathrm{g}}^{2}}{2 \mu \theta-1},\left\|\boldsymbol{x}_{0}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right\}$.
+\end{theorem}
+\begin{proof}
+	Using SGD update rule, we have
+	$$
+	\begin{array}{l}{\left\|\boldsymbol{x}^{t+1}-\boldsymbol{x}^{*}\right\|_{2}^{2}=\left\|\boldsymbol{x}^{t}-\eta_{t} \boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right)-\boldsymbol{x}^{*}\right\|_{2}^{2}} \\ {=\left\|\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\|_{2}^{2}-2 \eta_{t}\left(\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right)^{\top} \boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right)+\eta_{t}^{2}\left\|\boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right)\right\|_{2}^{2}}\end{array}
+	$$
+	Since $\boldsymbol{x}^{t}$ depend on $\xi_{1}, \cdots, \xi_{t-1}$, 
+	$$
+	\begin{aligned} \mathbb{E}\left[\left(\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right)^{\top} \boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right)\right] &=\mathbb{E}\left[\mathbb{E}\left[\left(\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right)^{\top} \boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right) | \boldsymbol{\xi}_{1}, \cdots, \boldsymbol{\xi}_{t-1}\right]\right] \\ &=\mathbb{E}\left[\left(\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right)^{\top} \mathbb{E}\left[\boldsymbol{g}\left(\boldsymbol{x}^{t} ; \boldsymbol{\xi}^{t}\right) | \boldsymbol{\xi}_{1}, \cdots, \boldsymbol{\xi}_{t-1}\right]\right] \\ &=\mathbb{E}\left[\left(\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right)^{\top} \nabla F\left(\boldsymbol{x}^{t}\right)\right] \end{aligned}.
+	$$
+	Furthermore, strong convexity gives
+	$$
+	\left\langle\nabla F\left(\boldsymbol{x}^{t}\right), \boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\rangle=\left\langle\nabla F\left(\boldsymbol{x}^{t}\right)-\nabla F\left(\boldsymbol{x}^{*}\right), \boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\rangle \geq \mu\left\|\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\|_{2}^{2},
+	$$
+	which implies
+	$$
+	\mathbb{E}\left[\left\langle\nabla F\left(\boldsymbol{x}^{t}\right), \boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\rangle\right] \geq \mu \mathbb{E}\left[\left\|\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right].
+	$$
+	Combine the above results to obtain,
+	$$
+	\mathbb{E}\left[\left\|\boldsymbol{x}^{t+1}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right] \leq\left(1-2 \mu \eta_{t}\right) \mathbb{E}\left[\left\|\boldsymbol{x}^{t}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right]+\eta_{t}^{2} \sigma_{\mathrm{g}}^{2}.
+	$$
+	First for $t=0$,
+	$$
+	\mathbb{E}\left[\left\|\boldsymbol{x}^{1}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right]\leq (1-2\mu\theta)\mathbb{E}\left[\left\|\boldsymbol{x}^{0}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right]+\theta^2\sigma_{\mathrm{g}}^{2}\leq c_{\theta}.
+	$$
+	Assume the result holds for some $k\leq 1$, it follows that
+	$$
+	\begin{aligned}
+	\mathbb{E}\left[\left\|\boldsymbol{x}^{t+1}-\boldsymbol{x}^{*}\right\|_{2}^{2}\right] &\leq\frac{t+1-2\mu\theta}{(t+1)^2}c_{\theta}+\frac{\theta^2\sigma_{\mathrm{g}}^{2}}{(t+1)^2}\\
+	&=\frac{t}{(t+1)^2}c_{\theta}-\frac{2\mu\theta-1}{(t+1)^2}c_{\theta}+\frac{\theta^2\sigma_{\mathrm{g}}^{2}}{(t+1)^2}\\
+	&\leq \frac{t}{(t+1)^2}c_{\theta}-\frac{\theta^2\sigma_{\mathrm{g}}^{2}}{2(t+1)^2}\\
+	&\leq \frac{1}{(t+2)^2}c_{\theta}.
+	\end{aligned}
+	$$
+	Thus, the main result holds for every $k\geq 1$.
+\end{proof}
+
+\section{Stochastic variance reduced gradient}
+Consider the following optimization problem
+\begin{equation}\label{5.1}
+\min P(w), \quad P(w):=\frac{1}{n} \sum_{i=1}^{n} \psi_{i}(w)
+\end{equation}
+Because of the variance of SGD, we need a small learning rate, which leads a slower convergence. To fix this, SVRG proposed by \citet*{johnson2013accelerating} keep a snapshot of the estimator $\tilde{w}$ after every $m$ SGD iterations. Moreover, we maintain the average gradient 
+\begin{equation*}
+\tilde{\mu}=\nabla P(\tilde{w})=\frac{1}{n} \sum_{i=1}^{n} \nabla \psi_{i}(\tilde{w}),
+\end{equation*}
+and the expectation of $\nabla \psi_{i}(\tilde{w})-\tilde{\mu}$ over $i$ is 0. And thus the following update rule is generalized SGD: randomly draw $i_t$ from $\{1,2,...,n\}$:
+\begin{equation}\label{svrg5}
+w^{(t)}=w^{(t-1)}-\eta_{t}\left(\nabla \psi_{i}\left(w^{(t-1)}\right)-\nabla \psi_{i_{t}}(\tilde{w})+\tilde{\mu}\right).
+\end{equation}
+And we have
+$$
+\mathbb{E}\left[w^{(t)} | w^{(t-1)}\right]=w^{(t-1)}-\eta_{t} \nabla P\left(w^{(t-1)}\right).
+$$
+The SVRG is presented in Algorithm \ref{svrg}.
+\IncMargin{1em} % 使得行号不向外突出 
+\begin{algorithm}[hbt!]
+	\caption{Stochastic Variance Reduced Gradient\label{svrg}}
+	\SetAlgoNoLine % 不要算法中的竖线
+	\SetKwInOut{Input}{\textbf{Input}}\SetKwInOut{Output}{\textbf{Output}} % 替换关键词
+	
+	\Input{Data $\{X_i,\ i=1,2,...,n\}$, the number of iterations $L$, update frequency $m$ and learning rate $\eta$} 
+	\Output{The estimator $\hat w_L$}
+	\BlankLine
+	Compute the initial estimator $\tilde{w}_0$\\
+	\For{$s= 1,2,...,L$}{
+		Set $\tilde{w}=\tilde{w}_{s-1}$\\
+		Compute the average gradient $\tilde{\mu}=\frac{1}{n} \sum_{i=1}^{n} \nabla \psi_{i}(\tilde{w})$\\
+		Set $w_0 = \tilde{w}$\\
+		\For{$t= 1,2,...,m$}{
+			Randomly pick $i_t$ from $\{1,2,...,n\}$ and update estiamte
+			$$
+			w_{t}=w_{t-1}-\eta\left(\nabla \dot{\psi}_{i_{t}}\left(w_{t-1}\right)-\nabla \psi_{i_{t}}(\tilde{w})+\tilde{\mu}\right)
+			$$}
+		\textbf{Option 1:}  Set $\tilde{w}_{s}=w_{m}$\\
+		\textbf{Option 2:} Set $\tilde{w}_{s}=w_{t}$ for randomly chosen $t \in \{1,2,...,n\}$
+	}
+\end{algorithm}
+\DecMargin{1em}
+\begin{theorem}
+	For the optimization problem (\ref{5.1}), consider SVRG in Algorithm \ref{svrg} with option 2. Assume that all $\psi_{i}(x)$ are convex and $L-$smooth and $P(w)$ is $\lambda-$strongly convex. Let $w_{*}=\arg \min _{w} P(w)$. Assume that $m$ is sufficiently large so that
+	$$
+	\alpha=\frac{1}{\gamma \eta(1-2 L \eta) m}+\frac{2 L \eta}{1-2 L \eta}<1,
+	$$
+	then we have geometric convergence in expectation for SVRG:
+	$$
+	\mathbb{E} P\left(\tilde{w}_{s}\right) \leq \mathbb{E} P\left(w_{*}\right)+\alpha^{s}\left[P\left(\tilde{w}_{0}\right)-P\left(w_{*}\right)\right].
+	$$
+\end{theorem}
+\section{Distributed SGD}
+Let $L_n$ be the global loss function, and expand it to an infinite series:
+\begin{equation}\label{5.2}
+\mathcal{L}_{N}(\theta)=\mathcal{L}_{N}(\bar{\theta})+\left\langle\nabla \mathcal{L}_{N}(\bar{\theta}), \theta-\bar{\theta}\right\rangle+\sum_{j=2}^{\infty} \frac{1}{j !} \nabla^{j} \mathcal{L}_{N}(\bar{\theta})(\theta-\bar{\theta})^{\otimes j},
+\end{equation}
+where $\bar{\theta}$ is the initial estimator of $\theta$. Because the data is split across machines, evaluating the derivatives $\nabla^{j} \mathcal{L}_{N}(\bar{\theta}), j\geq 1$ requires one communication round. However the higher-order derivatives ($j\geq 2$) require communicating more than $O(d^2)$ bits from each machine. This reasoning motivates \citet*{jordan2019communication} to replace the global higher-order derivatives $\nabla^{j} \mathcal{L}_{N}(\bar{\theta}), j\geq 2$ with the local derivatives, leading to the following approximation of $\mathcal{L}_{N}(\theta)$
+\begin{equation}\label{5.3}
+\widetilde{\mathcal{L}}(\theta)=\mathcal{L}_{N}(\bar{\theta})+\left\langle\nabla \mathcal{L}_{N}(\bar{\theta}), \theta-\bar{\theta}\right\rangle+\sum_{j=2}^{\infty} \frac{1}{j !} \nabla^{j} \mathcal{L}_{1}(\bar{\theta})(\theta-\bar{\theta})^{\otimes j}.
+\end{equation}
+Comparing (\ref{5.2}) and (\ref{5.3}), using the fact $\left\|\nabla^{2} \mathcal{L}_{N}(\bar{\theta})-\nabla^{2} \mathcal{L}_{1}(\bar{\theta})\right\|_{2}=O\left(n^{-1 / 2}\right)$, we can obtain the approximation error
+\begin{align*} 
+\widetilde{\mathcal{L}}(\theta)-\mathcal{L}_{N}(\theta) &=\mathcal{L}_{N}(\bar{\theta})+\left\langle\nabla \mathcal{L}_{N}(\bar{\theta}), \theta-\bar{\theta}\right\rangle+\sum_{j=2}^{\infty} \frac{1}{j !} \nabla^{j} \mathcal{L}_{1}(\bar{\theta})(\theta-\bar{\theta})^{\otimes j} \\ &-\left(\mathcal{L}_{N}(\bar{\theta})+\left\langle\nabla \mathcal{L}_{N}(\bar{\theta}), \theta-\sum_{j=2}^{\infty} \frac{1}{j !} \nabla^{j} \mathcal{L}_{N}(\bar{\theta})(\theta-\bar{\theta})^{\otimes j}\right)\right.\\ &=\frac{1}{2}\left\langle\theta-\bar{\theta},\left(\nabla^{2} \mathcal{L}_{1}(\bar{\theta})-\nabla^{2} \mathcal{L}_{N}(\bar{\theta})\right)(\theta-\bar{\theta})\right\rangle+ O\left(\|\theta-\bar{\theta}\|_{2}^{3}\right) \\ &=O\left(\frac{1}{\sqrt{n}}\|\theta-\bar{\theta}\|_{2}^{2}+\|\theta-\bar{\theta}\|_{2}^{3}\right).
+\end{align*}
+Now we replace the infinite sum of high-order derivatives in expression (\ref{5.2}) with $\mathcal{L}_{1}(\theta)-\mathcal{L}_{1}(\bar{\theta})-\left\langle\nabla \mathcal{L}_{1}(\bar{\theta}), \theta-\bar{\theta}\right\rangle$ and omit the the additive constans, which yields 
+\begin{equation}
+\widetilde{\mathcal{L}}(\theta):=\mathcal{L}_{1}(\theta)-\left\langle\theta, \nabla \mathcal{L}_{1}(\bar{\theta})-\nabla \mathcal{L}_{N}(\bar{\theta})\right\rangle.
+\end{equation}
+We define the distributed SGD method as Algorithm \ref{a2}, and the error of first iteration is given by Theorem \ref{theorem 5.5}.
+\IncMargin{1em} % 使得行号不向外突出 
+\begin{algorithm}[hbt!]
+	\caption{Distributed Stochastic Gradient Descent\label{a2}}
+	\SetAlgoNoLine % 不要算法中的竖线
+	\SetKwInOut{Input}{\textbf{Input}}\SetKwInOut{Output}{\textbf{Output}} % 替换关键词
+	
+	\Input{Data on local machines $\{X_i,\ i\in H_k\}$ for $k=1,2,...,N$, the number of iterations $L$} 
+	\Output{The final median estimate $\hat \beta_t$}
+	\BlankLine
+	
+	Compute the initial estimator $\hat \beta_0$ based on $\{X_i,\ i\in H_1\}$ such that
+	$$
+	|\hat \beta_0-\beta_{*}|=O_p(\frac{1}{\sqrt{m}})
+	$$ \\% 分号 \; 区分一行结束
+	\For {$t=1,2,...,L$}{
+		Transimit $\hat{\beta}_{t-1}$ to all local machines.\\
+		\For{$i=1,2,...,N$}{
+			In each machine, compute the gradient of empirical lost function
+			$$
+			\hat{g}_i(\hat \beta_{g-1})=\frac{1}{m}\sum_{k \in H_i}\partial f(X_k,\hat \beta_0)
+			$$
+		} 
+		Compute the pooled gradient:
+		$$
+		\hat{g}(\hat \beta_{t-1})=\frac{1}{N}\sum_{i=1}^N\hat{g}_i(\hat \beta_{t-1})
+		$$\\
+		Compute update of $beta$ based on $\{X_i,\ i\in H_1\}$:
+		$$
+		\widehat{\boldsymbol{\beta}}_{t}=\underset{\boldsymbol{\beta} \in \mathbb{R}^{p}}{\arg \min }\left\{\frac{1}{m}\sum_{k \in H_i}f(X_k,\beta)-\beta^T\left[\hat g_1(\hat \beta_{t-1})-\hat g(\hat \beta_{t-1})\right]\right\}
+		$$
+	}
+\end{algorithm}
+\DecMargin{1em}
+\begin{theorem}\label{theorem 5.5}
+	Assume that for all $\beta,\ \beta^{'}\in \mathbb{R}^p$
+	$$\|\partial f(X,\beta)-\partial f(X,\beta^{'})\|_2\leq M(X)\|\beta-\beta^{'}\|_2$$ 
+	and $E(M^2(X))\leq M$. The error of first update $\hat \beta_{1}$ is 
+	\begin{equation}
+	|\hat \beta_{1}-\beta_{*}|=O_p(\frac{1}{\sqrt{n}}+\frac{\sqrt{\log n}}{m}).
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	First we will prove for any $\beta$ satisfying $|\beta-\beta^{*}|=O_p(\frac{1}{\sqrt{n}}+\frac{\sqrt{\log n}}{m})$, 
+	$$
+	h(\beta)>h(\beta^{*}),
+	$$
+	where $h(\beta) = \frac{1}{m}\sum_{k \in H_i}f(X_k,\beta)-\beta^T(\hat g_1(\hat \beta_{t-1}))-\hat g(\hat \beta_{t-1})$. Taking Taylor expansion on $h(\beta)$ we have
+	\begin{align*}
+	h(\beta)&=h(\beta^{*})+\left[\hat g_1(\beta^{*})-\hat g_1(\hat \beta_0)+\hat g(\hat \beta_0)\right]^T(\beta-\beta^{*})\\
+	&+\frac{1}{2}(\beta-\beta^{*})^T\left(\frac{1}{m}\sum_{k \in H_1}\partial^2 f(X_k,\tilde \beta)\right) (\beta-\beta^{*}).
+	\end{align*}
+	Let $G(\beta)=E(\partial f(X,\beta))$, then we consider the case of 1-dimension. Note that
+	\begin{align*}
+	\hat g(\hat \beta_0)&=\frac{1}{n}\sum_{i=1}^n\partial f(X_i,\hat \beta_0)-G(\hat\beta_0)-\left[\frac{1}{n}\sum_{i=1}^n\partial f(X_i,\beta^*)-G(\beta^*)\right]\\
+	&+\left[\frac{1}{n}\sum_{i=1}^n\partial f(X_i,\beta^*)-G(\beta^*)\right]+G(\hat \beta_0)\\
+	&\leq \sup_{|\beta-\beta^{*}|=\frac{1}{\sqrt{m}}}\frac{1}{n}\sum_{i=1}^n\partial f(X_i,\beta)-G(\beta)-\left[\frac{1}{n}\sum_{i=1}^n\partial f(X_i,\beta^*)-G(\beta^*)\right]+O_p(\frac{1}{\sqrt{n}})+G(\hat \beta_0)\\
+	&=O_p(\frac{1}{\sqrt{m}}\frac{\log n}{\sqrt{n}})+O_p(\frac{1}{\sqrt{n}})+G(\hat \beta_0),
+	\end{align*}
+	thus we have $\hat g(\hat \beta_0)-G(\hat \beta_0)=O_p(\frac{1}{\sqrt{n}})$. Then using the fact that $G(\beta^{*})=0$ we can obtain
+	\begin{align*}
+	\hat g_1(\beta^{*})-\hat g_1(\hat \beta_0)+\hat g(\hat \beta_0)&= \hat g_1(\beta^{*})-\hat g_1(\hat \beta_0)+G(\hat\beta_0)+O_p(\frac{1}{\sqrt{n}})\\
+	&=\hat g_1(\beta^{*})-G(\beta^{*})-\hat g_1(\hat \beta_0)+G(\hat\beta_0)+O_p(\frac{1}{\sqrt{n}})\\
+	&=O_p(\frac{\sqrt{\log m}}{m}+\frac{1}{\sqrt{n}}).
+	\end{align*}
+	Therefore, $h(\beta)>h(\beta^{*})$. According to Lemma \ref{lemma 5.1}, the conclusion holds.
+\end{proof}
+\section{First order Newton method}
+Consider a general statistical estimation problem in the following risk minimization form
+\begin{equation}
+\\boldsymbol{\theta}^{*}=\underset{\boldsymbol{\theta} \in \mathbb{R}^{p}}{\arg \min } F(\boldsymbol{\theta}):=\mathbb{E}_{\boldsymbol{\xi} \sim \Pi} f(\boldsymbol{\theta}, \boldsymbol{\xi})
+\end{equation}
+where $f(\cdot, \boldsymbol{\xi}): \mathbb{R}^{p} \rightarrow \mathbb{R}$ is a convex loss function that can be non-differentiable and $\boldsymbol{\xi}$ denotes the random sample from a probability distribution. The “one-step estimator” essentially performs the following 􏰪Newton-type step based on
+\begin{equation}\label{6.8}
+\widetilde{\boldsymbol{\theta}}=\widehat{\boldsymbol{\theta}}_{0}-\boldsymbol{\Sigma}^{-1}\left(\frac{1}{n} \sum_{i=1}^{n} g\left(\widehat{\boldsymbol{\theta}}_{0}, \boldsymbol{\xi}_{i}\right)\right),
+\end{equation}
+where $\boldsymbol{\Sigma}$ is the population Hessian matrix and $\left(\frac{1}{n} \sum_{i=1}^{n} g\left(\widehat{\boldsymbol{\theta}}_{0}, \boldsymbol{\xi}_{i}\right)\right)$ is the subgradient vector. The estimation of $\boldsymbol{\Sigma}$ is not easy when $f$ is non-differentiable or in high-dimensional situation, and the empirical Hessian matrix does not exist. 
+
+To address this issue, \citet*{chen2018first} propose an estimator of $\boldsymbol{\Sigma}^{-1}\boldsymbol{a}$ for any $\boldsymbol{a}\in \mathcal{R}^p$ only using the stochastic first-order information, which is called \textbf{First-Order Newton-type Estimator (FONE)}. Then it solves (\ref{6.8}) as a special case $\boldsymbol{a}=\frac{1}{n} \sum_{i=1}^{n} g\left(\widehat{\boldsymbol{\theta}}_{0}, \boldsymbol{\xi}_{i}\right)$.
+
+For a given initial estimator $\hat{\theta}_0$, we can perform the Newton-type step in (\ref{6.8})
+\begin{equation}\label{6.9}
+\widetilde{\boldsymbol{\theta}}=\widehat{\boldsymbol{\theta}}_{0}-\widehat{\boldsymbol{\Sigma}^{-1} \boldsymbol{a}}, \quad \boldsymbol{a}=\left(\frac{1}{n} \sum_{i=1}^{n} g\left(\widehat{\boldsymbol{\theta}}_{0}, \boldsymbol{\xi}_{i}\right)\right).
+\end{equation}
+Note that $\mathbf{\Sigma}^{-1} \boldsymbol{a}=\sum_{i=0}^{\infty}(1-\eta \boldsymbol{\Sigma})^{i} \eta \boldsymbol{a}$, for some small enough $\eta$ such that $\|\eta \boldsymbol{\Sigma}\|<1$. Then Then we can use the following iterative procedure $\{\widetilde{\boldsymbol{z}}_t\}$ to approximate $\boldsymbol{\Sigma}^{-1} \boldsymbol{a}$,
+\begin{equation}\label{6.10}
+\widetilde{\boldsymbol{z}}_{t}=\widetilde{\boldsymbol{z}}_{t-1}-\eta\left(\boldsymbol{\Sigma} \tilde{\boldsymbol{z}}_{t-1}-\boldsymbol{a}\right), 1 \leq t \leq T.
+\end{equation}
+When $T$ is large enough, we have 
+\begin{align*}
+\widetilde{\boldsymbol{z}}_{T} &=\widetilde{\boldsymbol{z}}_{T-1}-\eta\left(\boldsymbol{\Sigma}_{T-1}-\boldsymbol{a}\right)\\
+&=(I-\eta \boldsymbol{\Sigma}) \widetilde{\boldsymbol{z}}_{T-1}+\eta \boldsymbol{\Sigma} \boldsymbol{a} \\ &=(I-\eta \boldsymbol{\Sigma})^{2} \widetilde{\boldsymbol{z}}_{T-2}+(I-\eta \boldsymbol{\Sigma}) \eta \boldsymbol{a}+\eta \boldsymbol{a} \\ &=(I-\eta \boldsymbol{\Sigma})^{T-1} \widetilde{\boldsymbol{z}}_{1}+\sum_{i=0}^{T-2}(I-\eta \boldsymbol{\Sigma})^{i} \eta \boldsymbol{a} \approx \boldsymbol{\Sigma}^{-1} \boldsymbol{a},
+\end{align*}
+which implies that (\ref{6.10}) leads to an approximation of $\boldsymbol{\Sigma}^{-1} \boldsymbol{a}$. Let us define $\boldsymbol{z}_{t}=\widehat{\boldsymbol{\theta}}_{0}-\widetilde{\boldsymbol{z}}_{t}$, which is the LHS of (\ref{6.9}). To avoiding estimating $\boldsymbol{\Sigma}$ in (\ref{6.10}), we adopt the following first-order approximation
+\begin{equation}\label{6.11}
+-\boldsymbol{\Sigma} \tilde{\boldsymbol{z}}_{t-1}=\boldsymbol{\Sigma}\left(\boldsymbol{z}_{t-1}-\widehat{\boldsymbol{\theta}}_{0}\right) \approx g_{B_{t}}\left(\boldsymbol{z}_{t-1}\right)-g_{B_{t}}\left(\widehat{\boldsymbol{\theta}}_{0}\right),
+\end{equation}
+where $g_{B_{t}}(\boldsymbol{\theta})=\frac{1}{m} \sum_{i \in B_{t}} g\left(\boldsymbol{\theta}, \boldsymbol{\xi}_{i}\right)$ is the averaged stochastic subgradient over a subset of the data indexed by $B_{t} \subseteq\{1,2, \ldots, n\}$. Here $B_t$ is randomly chosen from $\{1, ...,n\}$ with replacement for every iteration. Then we can construct FONE of  $\widehat{\boldsymbol{\theta}}_{0}-\boldsymbol{\Sigma}^{-1} \boldsymbol{a}$ by the following recursive update
+\begin{equation}\label{6.12}
+\boldsymbol{z}_{t}=\boldsymbol{z}_{t-1}-\eta\left\{g_{B_{t}}\left(\boldsymbol{z}_{t-1}\right)-g_{B_{t}}\left(\widehat{\boldsymbol{\theta}}_{0}\right)+\boldsymbol{a}\right\}, \quad \boldsymbol{z}_{0}=\widehat{\boldsymbol{\theta}}_{0}.
+\end{equation}
+Compare FONE (\ref{6.12}) with the SVRG (\ref{svrg5}), then FONE can be reduces to a mini-batch version of SVRG.
+\bibliography{docbib}
+\end{document}
