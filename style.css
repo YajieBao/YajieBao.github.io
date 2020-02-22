@@ -1,5 +1,5 @@
 div.navbar-collapse ul.navbar-nav li {
-  font-family: cursive;
+  font-family: Times, Times New Roman, Georgia, serif;
   font-size: 20px;
 }
 
@@ -15,8 +15,7 @@ body {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-family: cursive, STFangsong;
-  font-weight: 900;
+  font-weight: 600;
   line-height: 1.1;
 }
 /* unvisited link */

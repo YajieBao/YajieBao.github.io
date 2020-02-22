@@ -1,0 +1,450 @@
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{tocloft,lipsum,pgffor}
+
+\setcounter{tocdepth}{2}% Include up to \subsubsection in ToC
+
+
+\usepackage{hyperref}       % hyperlinks
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+	citecolor = red
+}
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}		% Can be removed after putting your text content
+\usepackage{amsmath,graphicx}
+\usepackage[linesnumbered,boxed,ruled,commentsnumbered]{algorithm2e}%%算法包，注意设置所需可选项
+
+%\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\numberwithin{equation}{section}
+% Use these for theorems, lemmas, proofs, etc.
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newenvironment{proof}{{\bf Proof:}}{\hfill\rule{2mm}{2mm}}
+
+% set page geometry
+\usepackage[verbose=true,letterpaper]{geometry}
+\AtBeginDocument{
+	\newgeometry{
+		textheight=9in,
+		textwidth=6.5in,
+		top=1in,
+		headheight=14pt,
+		headsep=25pt,
+		footskip=30pt
+	}
+}
+
+\widowpenalty=10000
+\clubpenalty=10000
+\flushbottom
+%\sloppy
+
+% float placement
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+
+\begin{document}
+\title{High-dimensional Regression and M-estimator}
+
+\author{Yajie Bao\thanks{Department of Mathematics, Shanghai Jiao Tong University, Eamil: baoyajie2019stat@sjtu.edu.cn}}
+%\address{Shanghai Jiao Tong University}
+%\email{baoyajie2019stat@sjtu.edu.cn}
+\maketitle
+\section{Preliminaries on random matrix}
+The root of high-dimensional statistics is dating back to work on random matrix theory and high-dimensional testing problems (\citet{negahban2012unified}). To develop theoretical results on high-dimensional regression and M-estimator, we need to introduce some important spectral norm concentration inequalities of random matrix. It's worthy to mention that the "High-dimensional" in this article means that
+$$
+p=n^{\alpha},\quad \alpha\in (0,1).
+$$
+For simple normal case, here we states Lemma 9 without proof in \citet{wainwright2009sharp}:
+\begin{lemma}
+	For $k\leq n$, let $X\in \mathbb{R}^{n\times k}$ have i.i.d rows $X_{i} \sim N(0, \Lambda)$ and $\delta(n, k, t):=2(\sqrt{\frac{k}{n}}+t)+(\sqrt{\frac{k}{n}}+t)^{2}$
+	\begin{enumerate}
+		\item If the covariance matrix $\Lambda$ has maximum eigenvalue $C_{max}<\infty$, then for all $t>0$, we have
+		\begin{equation}
+		\mathbb{P}\left[\left\|\frac{1}{n} X^{T} X-\Lambda\right\|_{2} \geq C_{\max } \delta(n, k, t)\right] \leq 2 \exp \left(-n t^{2} / 2\right).
+		\end{equation}
+		\item If the covariance matrix $\Lambda$ has minimum eigenvalue $C_{min}>0$, then for all $t>0$, we have
+		\begin{equation}
+		\mathbb{P}\left[\left\|\left(\frac{X^{T} X}{n}\right)^{-1}-\Lambda^{-1}\right\|_{2} \geq \frac{\delta(n, k, t)}{C_{\min }}\right] \leq 2 \exp \left(-n t^{2} / 2\right).
+		\end{equation}
+	\end{enumerate}
+\end{lemma}
+Next we will generalize the concentration inequality to sub-gaussian case. Recall the operator norm or spectral norm of $m\times n$ matrix $A$ is defined by
+$$
+\|A\|_2:=\max _{x \in \mathbb{R}^{n} \backslash\{0\}} \frac{\|A x\|_{2}}{\|x\|_{2}}=\max _{x \in S^{n-1}}\|A x\|_{2},
+$$
+which is the largest singular value of $A$. For symmetric matrix, the spectral norm is the largest eigenvalue. 
+\begin{lemma}\label{lemma1.2}
+	The covering numbers of the unit Euclidean sphere $S^{n-1}$ satisfy the following for any $\varepsilon>0$,
+	$$
+	\mathcal{N}\left(S^{n-1}, \varepsilon\right) \leq\left(\frac{2}{\varepsilon}+1\right)^{n}.
+	$$
+\end{lemma}
+\begin{lemma}\label{lemma1.3}
+	Let A be an $m\times n$ matrix and $\delta>0$. Suppose that
+	$$
+	\left\|A^{\top} A-I_{n}\right\| \leq \max \left(\delta, \delta^{2}\right),
+	$$
+	then 
+	$$
+	(1-\delta)\|x\|_{2} \leq\|A x\|_{2} \leq(1+\delta)\|x\|_{2} \quad \text { for all } x \in \mathbb{R}^{n}.
+	$$
+\end{lemma}
+\begin{proof}
+	W.L.O.G, let $\|x\|_2=1$.Using the assumption we have
+	$$
+	\max \left(\delta, \delta^{2}\right) \geq\left|\left\langle\left(A^{\top} A-I_{n}\right) x, x\right\rangle\right|=\left|\|A x\|_{2}^{2}-1\right|.
+	$$
+	Applying the elementary inequality,
+	$$
+	\max \left(|z-1|,|z-1|^{2}\right) \leq\left|z^{2}-1\right|, \quad z \geq 0
+	$$
+	for $z=\|A x\|_{2}$, we concluded that $\|A x\|_{2}-1 | \leq \delta$.
+\end{proof}\newline
+Then we introduce the two-sided bounds on the entire spectrum of $m\times n$ matrix $A$ (see \citet{vershynin2018high}, page 97).
+\begin{theorem}[Two-sided spectral norm bounds]\label{theorem1.4}
+	Let A be an $m\times n$ matrix whose rows $A_i$ are independent, mean zero, sub-gaussian isotropic random vectors in $\mathbb{R}^n$. Then for any $t>0$ we have
+	\begin{equation}
+	\sqrt{m}-C K^{2}(\sqrt{n}+t) \leq s_{n}(A) \leq s_{1}(A) \leq \sqrt{m}+C K^{2}(\sqrt{n}+t)
+	\end{equation}
+	with probability at least $1-2 \exp \left(-t^{2}\right)$. Here $K=\max _{i}\left\|A_{i}\right\|_{\psi_{2}}$.
+\end{theorem}
+\begin{proof}
+	Using Lemma \ref{lemma1.3}, it suffices to show
+	$$
+	\left\|\frac{1}{m} A^{\top} A-I_{n}\right\| \leq K^{2} \max \left(\delta, \delta^{2}\right) \quad \text { where } \quad \delta=C\left(\sqrt{\frac{n}{m}}+\frac{t}{\sqrt{m}}\right).
+	$$
+	By Lemma \ref{lemma1.2}, we can find an $\frac{1}{4}-$net $\mathcal{N}$ of the unit sphere $S^{n-1}$ with cardinality $|\mathcal{N}|\leq 9^n$. Then we can evaluate operator norm on the $\mathcal{N}$,
+\begin{equation}\label{1.4}
+	\left\|\frac{1}{m} A^{\top} A-I_{n}\right\|\leq 2\max_{x\in \mathcal{N}}\left|\left\langle\left(\frac{1}{m}A^{T} A-I_{n}\right) x, x\right\rangle\right|=2 \max _{x \in \mathcal{N}}\left|\frac{1}{m}\|A x\|_{2}^{2}-1\right|.
+\end{equation}
+Let $X_i=x^TA_i$ which is indpendent sub-gaussian random variables, note that
+$$
+\frac{1}{m}\|A x\|_{2}^{2}-1=\frac{1}{m}\sum_{i=1}^{m}[(x^TA_i)^2-1]=\frac{1}{m}\sum_{i=1}^{m}(X_i^2-1),
+$$
+Using the fact that $A_i$ are isotropic and $\|x\|_2=1$, $\|X_i\|_{\phi_2}\leq K$. Then $X_i^2-1$ is sub-exponential random variables satisfying that $\|X_i^2-1\|_{\phi_1}\leq CK$. By Bernstein inequality and we obtain
+\begin{align*}
+\mathbb{P}\left\{\left|\frac{1}{m}\|A x\|_{2}^{2}-1\right| \geq \frac{\varepsilon}{2}\right\} &=\mathbb{P}\left\{\left|\frac{1}{m} \sum_{i=1}^{m} X_{i}^{2}-1\right| \geq \frac{\varepsilon}{2}\right\} \\
+& \leq 2 \exp \left[-c_{1} \min \left(\frac{\varepsilon^{2}}{K^{4}}, \frac{\varepsilon}{K^{2}}\right) m\right] \\
+&=2 \exp \left[-c_{1} \delta^{2} m\right] \\
+& \leq 2 \exp \left[-c_{1} C^{2}\left(n+t^{2}\right)\right],
+\end{align*}
+where the second equality follows that $\frac{\varepsilon}{K^{2}}=\max \left(\delta, \delta^{2}\right)$ and the last inequality follows that $(a+b)^2\geq (a^2+b^2)$.
+Using (\ref{1.4}) we have
+\begin{align*}
+\mathbb{P}\left(\left\|\frac{1}{m} A^{\top} A-I_{n}\right\|\geq  K^{2} \max \left(\delta, \delta^{2}\right)\right)&\leq \mathbb{P}\left(2 \max _{x \in \mathcal{N}}\left|\frac{1}{m}\|A x\|_{2}^{2}-1\right|>K^{2} \max \left(\delta, \delta^{2}\right)\right)\\
+&\leq 2\cdot 9^n \exp \left[-c_{1} C^{2}\left(n+t^{2}\right)\right].
+\end{align*}
+Choose sufficiently large $C$ and the result follows.
+\end{proof}
+
+After proving this conclusion, we can apply this to covariance matrix estimation.
+\begin{theorem}\label{theorem1.5}
+	Let $X$ be a $p-$dimensional multivariate sub-gaussian random variables with covariance matrix $\Sigma$ and mean $\boldsymbol{0}$, and there exists $K\geq 1$ such that
+	\begin{equation}\label{1.5}
+	\|\langle X, x\rangle\|_{\psi_{2}} \leq Kx^T\Sigma x \text { for any } x \in \mathbb{R}^{p}.
+	\end{equation}
+	Then for sample covariance matrix $\widehat{\Sigma}_n$ we have
+	\begin{align}
+	\left\|\Sigma_{n}-\Sigma\right\| \leq C\lambda_{max}(\Sigma) K^{2}\left(\sqrt{\frac{p+t^2}{n}}+\frac{p+t^2}{n}\right)
+	\end{align}
+	holds with probability at least $1-\exp(-t^2/2)$.
+\end{theorem}
+\begin{proof}
+	Let $Z_i=\Sigma^{-1/2}X_i$, then $Z_i$ are independent isotropic sub-gaussian random vector. Using (\ref{1.5}) we have
+	\begin{equation}
+	\|Z_i\|_{\phi_2}=\sup_{x\in S^{p-1}}\|\langle Z_i, x\rangle\|_{\psi_{2}}\leq K.
+	\end{equation}
+	Then note that,
+	$$
+	\left\|\Sigma_{n}-\Sigma\right\|=\left\|\Sigma^{1 / 2} R_{n} \Sigma^{1 / 2}\right\| \leq\left\|R_{n}\right\|\|\Sigma\|,
+	$$
+	where
+	$$
+	R_{n}:=\frac{1}{n} \sum_{i=1}^{n} Z_{i} Z_{i}^{\top}-I_{p}.
+	$$
+	Let $A$ be the $n\times p$ matrix with rows $Z_i$, then apply Theorem \ref{theorem1.4} we obtain that
+	$$
+	\left\|\Sigma_{n}-\Sigma\right\| \leq K^{2}\|\Sigma\| \max \left(\delta, \delta^{2}\right)
+	$$
+	holds with at least probability $1-2\exp(-t^2/2)$. Moreover,
+	$$
+	\max \left(\delta, \delta^{2}\right)\leq \delta+\delta^2\leq C\left(\sqrt{\frac{p+t^2}{n}}+\frac{p+t^2}{n}\right).
+	$$
+	Thus the proof is completed.
+\end{proof}\newline
+\textbf{Remark.} The theorem above implies that for low dimensional setting, i.e., $p<n$
+\begin{equation}
+\left\|\Sigma_{n}-\Sigma\right\|=O_p\left(\sqrt{\frac{p}{n}}\right).
+\end{equation}
+Using the fact that
+$$
+\left\|\Sigma_{n}^{-1}-\Sigma^{-1}\right\|=\Omega_p\left(\left\|\Sigma_{n}-\Sigma\right\|\right),
+$$
+then if $\lambda_{min}(\Sigma)>0$ we have
+\begin{equation}
+\left\|\Sigma_{n}^{-1}-\Sigma^{-1}\right\|=O_p\left(\sqrt{\frac{p}{n}}\right).
+\end{equation}
+
+\section{High dimensional linear regression}
+Now consider the following linear regression model with random ensembles:
+\begin{equation}\label{2.1}
+y_i=\boldsymbol{X}_i^T\boldsymbol{\beta}^{*}+e_i,\quad i=1,2,...,n
+\end{equation}
+where $e_i,i=1,2,...,n$ are independent sub-gaussion random variables with mean 0 and parameter $\sigma$ and $\boldsymbol{\beta}^{*}\in \mathbb{R}^p$. We have known that the LSE of $\boldsymbol{\beta}^{*}$ is 
+\begin{equation}
+\boldsymbol{\widehat{\beta}}=\left(\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{X}_i\boldsymbol{X}_i^T\right)^{-1}\left(\frac{1}{n}\sum_{i=1}^ny_i\boldsymbol{X}_i\right).
+\end{equation}
+\begin{theorem}[Consistence]\label{theorem2.1}
+	For linear regression model (\ref{2.1}), suppose that $X_i$ are independent sub-gaussion random vectors with same mean $\boldsymbol{0}$ and covariance matrix $\Sigma$ and $X_i$ are independent with $e_i$. Assume that $\lambda_{min}(\Sigma)=\lambda_0>0$ and $\|X_i\|_{\psi_{2}}\leq K$, then
+	\begin{equation}
+	\left\|\boldsymbol{\widehat{\beta}}-\boldsymbol{\beta}^{*}\right\|_2=O_p\left(\sqrt{\frac{p\log p}{n}}\right).
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	By (\ref{2.1}),
+	\begin{align}\label{2.4}
+	\left\|\boldsymbol{\widehat{\beta}}-\boldsymbol{\beta}^{*}\right\|_2&=\left\|\left(\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{X}_i\boldsymbol{X}_i^T\right)^{-1}\left(\frac{1}{n}\sum_{i=1}^n\boldsymbol{X}_ie_i\right)\right\|_2\\\nonumber
+	&=\left\|\widehat{\Sigma}_n^{-1}\left(\frac{1}{n}\sum_{i=1}^n\boldsymbol{X}_ie_i\right)\right\|_2\\\nonumber
+	&\leq \|\widehat{\Sigma}_n^{-1}-\Sigma^{-1}\|_2\left\|\left(\frac{1}{n}\sum_{i=1}^n\boldsymbol{X}_ie_i\right)\right\|_2+\|\Sigma^{-1}\|_2\left\|\left(\frac{1}{n}\sum_{i=1}^n\boldsymbol{X}_ie_i\right)\right\|_2.
+	\end{align}
+	All we need to do is bounding the term $\left\|\left(\frac{1}{n}\sum_{i=1}^n\boldsymbol{X}_ie_i\right)\right\|_2$, let $Z_{ij} = X_{ij}e_i$.	Using the basic inequality $|ab|\leq \frac{a^2+b^2}{2}$ and $s^{2} e^{s} \leq e^{2 s}$, for $\eta>0$ we have
+	\begin{align*}
+	\mathbb{E}\left(Z_{ij}^2e^{\eta|Z_{ij}|}\right)&\leq \mathbb{E}\left(\eta^{-2}\exp(2\eta |Z_{ij}|)\right)\\
+	&\leq \eta^2\mathbb{E}\left[\exp\left(2\eta X_{ij}^2 \right)\exp\left(2\eta e_i^2 \right)\right]\\
+	&\leq \eta^2\sqrt{\mathbb{E}\left[\exp\left(2\eta X_{ij}^2 \right)\right]\mathbb{E}\left[\exp\left(2\eta e_i^2 \right)\right]}.
+	\end{align*}
+	Then by the property of sub-gaussian random variable, there exists some $M>0$, such that 
+	$$
+	\mathbb{E}\left[\exp\left(2\eta X_{ij}^2 \right)\right]\leq M, \mathbb{E}\left[\exp\left(2\eta e_i^2 \right)\right]\leq M.
+	$$
+	Next use the exponential inequality in \citet{cai2011constrained}, we set $\bar{B}_{n}^{2}=nM \eta^{-2}$
+	\begin{align*}
+	\mathbb{P}\left(\max_{j}^p\left|\frac{1}{n}\sum_{i=1}^nZ_{ij}\right|>C\sqrt{\frac{\log p}{n}}\right)&\leq \sum_{j=1}^{p} \mathrm{P}\left(\left|\sum_{i=1}^{n}Z_{i j}\right|>C \sqrt{n \log p}\right) \\
+	&=\sum_{j=1}^{p}\mathrm{P}\left(\sum_{i=1}^{n}\left|Z_{i j}\right|>C \bar{B}_{n} M^{-1} \eta \sqrt{\log p}\right)\\
+	&=p^{-\gamma}.
+	\end{align*}
+	And if we choose sufficiently large $C$, we can obtain that $$\max_{j}^p\left|\frac{1}{n}\sum_{i=1}^nZ_{ij}\right|=O_p\left(\sqrt{\frac{\log p}{n}}\right).$$
+	The proof is completed by (\ref{2.4}) and Theorem \ref{theorem1.5}.
+\end{proof}
+
+The theorem above implies that if $p\log p=o(n)$, LSE is consistent. Next we will give the central limt theorem for LSE.
+\begin{theorem}[Asymptotic Normality]
+	Under the condition of Theorem \ref{theorem2.1}, and assume that covariates $\boldsymbol{X}$ and noise $e$ are independent. We have
+	\begin{equation}
+	\sqrt{n}\left(\boldsymbol{\widehat{\beta}}-\boldsymbol{\beta}^{*}\right) \stackrel{d}{\longrightarrow} \mathcal{N}\left(0, \sigma^2\Sigma^{-1}\right)
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	Note that,
+	\begin{equation}
+	\sqrt{n}\left(\boldsymbol{\widehat{\beta}}-\boldsymbol{\beta}^{*}\right)=\left(\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{X}_i\boldsymbol{X}_i^T\right)^{-1}\left(\frac{1}{\sqrt{n}}\sum_{i=1}^n\boldsymbol{X}_ie_i\right).
+	\end{equation}
+	By law of large numbers,
+	$$
+	\frac{1}{n}\sum_{i=1}^{n}\boldsymbol{X}_i\boldsymbol{X}_i^T\stackrel{p}{\longrightarrow}\Sigma.
+	$$
+	And using the independence, we have $\mathbb{E}\left(\boldsymbol{X}_ie_i\right)=0$ and
+	$$
+	\mathbb{E}\left(\boldsymbol{X}_ie_i\right)\left(\boldsymbol{X}_ie_i\right)^T=\sigma^2\Sigma.
+	$$
+	Thus by multivariate central limt theorem,
+	$$
+	\frac{1}{\sqrt{n}}\sum_{i=1}^n\boldsymbol{X}_ie_i\stackrel{d}{\longrightarrow}\mathcal{N}\left(0,\sigma^2\Sigma\right)
+	$$
+	Then the result follows from Slutsky's Lemma.
+\end{proof}
+
+\section{High dimensional M estimator}
+Given sample $\{X_i,i=1,2,...,n\}\in \mathcal{X}_n$ is drawn independently according to
+some distribution $\mathbb{P}$. And in the well-specified case the distribution
+$\mathcal{P}$ is a member of parameterized family $\left\{\mathbb{P}_{\theta}, \theta \in \Omega\right\}$ , where $\boldsymbol{\Omega}$ is the parameter space, then the goal is to estimate parameter $\boldsymbol{\theta}^{*}$. For mis-specified models, in which case the target parameter $\boldsymbol{\theta}^{*}$ is defined as the minimizer of the population lost function (see \citet{wainwright2019high}). 
+
+A function $\mathcal{L}_n:\boldsymbol{\Omega}\times \mathcal{X}_n$ used to measure the goodness of estimation using sample $\boldsymbol{X}_n$, which is called \textit{lost function}. The population lost function is defined as
+\begin{equation}
+\mathcal{L}(\boldsymbol{\theta})=\mathbb{E}\left(\mathcal{L}_n\left(\boldsymbol{\theta},\boldsymbol{X}_n\right)\right),
+\end{equation}
+where
+$$
+\mathcal{L}_n\left(\boldsymbol{\theta},\boldsymbol{X}_n\right)=\frac{1}{n}\sum_{i=1}^nL(\boldsymbol{\theta},X_i).
+$$
+Next we define the \textit{target parameter} as the minimum of the population lost function
+\begin{equation}
+\boldsymbol{\theta}^{*}=\arg\min_{\boldsymbol{\theta}\in \boldsymbol{\Omega}}\mathcal{L}(\boldsymbol{\theta}).
+\end{equation}
+For example, the negative log-likelihood function is a lost function. Our overall estimator is based on solving the optimization problem
+\begin{equation}\label{3.3}
+\widehat{\theta} \in \arg \min _{\theta \in \Omega}\left\{\mathcal{L}_{n}\left(\theta ; Z_{1}^{n}\right)+\lambda_{n} \Phi(\theta)\right\},
+\end{equation}
+where $\lambda_{n}>0$ is regularization parameter and $\Phi(\theta): \boldsymbol{\Omega}\to \mathbb{R}$ is the penalty function. The estimator (\ref{3.3}) is called \textbf{M estimator}, where the “M” stands for minimization (or maximization).
+We begin with no-penalty problem, and the following assumptions is needed to estabilish theory results, and these assumptions can be found in \citet{zhang2013communication} and \citet{jordan2019communication}.
+\begin{assumption}[Parameter space]
+	The parameter space $\Theta$ is	a compact and convex subset of $\mathbb{R}^p$. Moreover, $\theta^{*} \in \operatorname{int}(\Theta)$ and $R:=\sup _{\theta \in \Theta}\left\|\theta-\theta^{*}\right\|_{2}>0$.
+\end{assumption}
+\begin{assumption}[Local convexity]\label{assumption3.1}
+The lost function $L(X_i,\boldsymbol{\theta})$ is twice differentiable with respective to $\boldsymbol{\theta}$, and the Hessian matrix $I(\boldsymbol{\theta})=\nabla^2\mathcal{L}(\boldsymbol{\theta})$ of the population lost function $\mathcal{L}(\boldsymbol{\theta})$ is invertible at $\boldsymbol{\theta}^{*}$. Moreover, there exists two positive constants $\mu_{-}<\mu_{+}$ such that $\mu_{-} I_{d} \preceq I(\boldsymbol{\theta}) \preceq \mu_{+} I_{d}$.
+\end{assumption}
+\begin{assumption}[Smoothness]\label{assumption3.2}
+	There exists some positive constant $(G,L)$ and positive integers $(k_0,k_1)$, such that
+	\begin{equation}
+	\mathbb{E}\left[\|\nabla L(\boldsymbol{\theta},X)\|_2^{k_0}\right]\leq G^{k_0},\quad \mathbb{E}\left[\|\nabla^2L(\boldsymbol{\theta},X)-\nabla^2\mathcal{L}(\boldsymbol{\theta})\|_2^{k_1}\right]\leq L^{k_1}.
+	\end{equation}
+	Moreover, for all $\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in U(\boldsymbol{\theta}^{*},\rho)$ (a ball around the truth $\boldsymbol{\theta}^{*}$ with radius $\rho>0$) there exists some positive constant $M$ and some positive integer $k_2$ such that
+	\begin{equation}
+	\left\|\nabla^2\mathcal{L}(\boldsymbol{\theta}_1,X)-\nabla^2\mathcal{L}(\boldsymbol{\theta}_2,X)\right\|_2\leq M(X)\|\boldsymbol{\theta}_1-\boldsymbol{\theta}_2\|_2,
+	\end{equation}
+	and $\mathbb{E}[M(X)^{k_2}]\leq M^{k_2}$.
+\end{assumption}
+Before bound the $\ell_2$ error between the optimization solution $\widehat{\boldsymbol{\theta}}$ and ture parameter $\boldsymbol{\theta}^{*}$, we state the following Lemma.
+\begin{lemma}\label{lemma 3.4}
+	For convex function $f(x)$, $x^{*}$ is the global minimizer of $f(x)$. If for any $x \in \{x:|x-\tilde x|^2= a\}$, s.t., $f(x)\geq f(\tilde x)$, then
+	$$
+	|x^{*}-\tilde x|\leq a.
+	$$
+\end{lemma}
+\begin{proof}
+	If there exists $x^{'}$ such that $|x^{'}-\tilde x|^2>a$ and $f(x^{'})\leq f(x^{*})$. By the convexity of $f$, we have 
+	$$
+	f(\alpha x^{'}+(1-\alpha) \tilde x)\leq \alpha f(x^{'})+(1-\alpha)f(\tilde x)< f(\tilde x),
+	$$
+	where $0<\alpha<1$. Note that
+	$$|\alpha x^{'}+(1-\alpha) \tilde x-\tilde x|=\alpha|x^{'}-\tilde x|,$$
+	let $\alpha=|x^{'}-\tilde x|/|x^{*}-\tilde x|$, then $|\alpha x^{'}+(1-\alpha) \tilde x-\tilde x|=a$. But
+	$$
+	f(\alpha x^{'}+(1-\alpha) \tilde x)< f(\tilde x),
+	$$
+	which is a contradiction.
+\end{proof}\newline
+Next we state Lemma 7 in \citet{zhang2013communication} without proof as following:
+\begin{lemma}
+	Under Assumption \ref{assumption3.2}, there exist some constants $C_1$ and $C_2$ (dependent only on the moments $k_0$ and $k_1$ respectively) such that
+	\begin{align}
+	\mathbb{E}\left[\left\|\nabla \mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)\right\|_{2}^{k_{0}}\right] &\leq C_1 \frac{G^{k_{0}}}{n^{k_{0} / 2}},\label{3.6}\\
+	\mathbb{E}\left[\left\|\nabla^{2} \mathcal{L}_n\left(\boldsymbol{\theta}^{*},X\right)-\nabla^{2} \mathcal{L}\left(\boldsymbol{\theta}^{*}\right)\right\|_{2}^{k_{1}}\right] &\leq C_2 \frac{\log ^{k_{1} / 2}(2 p) H^{k_{1}}}{n^{k_{1} / 2}}.\label{3.7}
+	\end{align}
+\end{lemma}
+
+\begin{theorem}
+	Under Assumption \ref{assumption3.1} and Assumption \ref{assumption3.2}, 
+	\begin{equation}
+	\|\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\|=O_p\left(\frac{1}{\sqrt{n}}\right).
+	\end{equation}
+\end{theorem}
+\begin{proof}
+	According to Lemma \ref{lemma 3.4}, it suffices to show that for any $\boldsymbol{\theta}$ satisfying $\|\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\|_2=O\left(\frac{1}{\sqrt{n}}\right)$ such that
+	$$
+	\mathcal{L}_n\left(\boldsymbol{\theta}\right)\geq	\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right).
+	$$
+	Taking Taylor expansion for $\mathcal{L}_n\left(\boldsymbol{\theta}\right)$ at $\boldsymbol{\theta}^{*}$,
+	\begin{align}\label{3.9}
+	\mathcal{L}_n\left(\boldsymbol{\theta}\right)=\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)+\nabla\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)^T\left(\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\right)+\frac{1}{2}\left(\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\right)^T\nabla^2\mathcal{L}_n(\tilde{\boldsymbol{\theta}})\left(\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\right),
+	\end{align}
+	where $\tilde{\boldsymbol{\theta}}$ is some point between $\boldsymbol{\theta}$ and $\boldsymbol{\theta}^{*}$. 
+	Define the following three events:
+	\begin{align*}
+	&\mathcal{E}_{0}:=\left\{\frac{1}{n} \sum_{i=1}^{n} M\left(X_{i}\right) \leq 2 M\right\},\\
+	&\mathcal{E}_{1}:=\left\{\left\|\nabla^{2} \mathcal{L}_n\left(\boldsymbol{\theta}^{*},X\right)-\nabla^{2} \mathcal{L}\left(\boldsymbol{\theta}^{*}\right)\right\|_{2} \leq \frac{\mu_{-}}{2}\right\},\\
+	&\mathcal{E}_2:=\left\{\|\nabla\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)\|_2\leq \frac{C_0}{\sqrt{n}}\right\}.
+	\end{align*}
+	Using Assumption \ref{assumption3.1}, Assumption \ref{assumption3.2} and Markov inequality
+	$$
+	\mathrm{P}\left(\mathcal{E}_{0}^c\cup\mathcal{E}_{1}^c\right)\leq \frac{C_3}{n^{k_2/2}}+\frac{C_4\log ^{k_{1} / 2}(2 p)}{n^{k_1/2}}.
+	$$
+	Since $\|\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\|_2=O\left(\frac{1}{\sqrt{n}}\right)$, there exists some positive constant $C$ such that 
+	$$
+	\|\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\|_2=\frac{C^{'}\mu_{-}}{2\sqrt{n}}
+	$$
+	Under event $\mathcal{E}_0\cap \mathcal{E}_1$, we can bound $\nabla^2\mathcal{L}_n(\tilde{\boldsymbol{\theta}})$ by
+	\begin{align*}
+		\lambda_{min}\left(\nabla^2\mathcal{L}_n(\tilde{\boldsymbol{\theta}})\right)&\geq \lambda_{min}\left(I(\boldsymbol{\theta}^{*})\right)-\|\nabla^2\mathcal{L}_n(\boldsymbol{\theta}^{*})-I(\boldsymbol{\theta}^{*})\|_2-\|\nabla^2\mathcal{L}_n(\tilde{\boldsymbol{\theta}})-\nabla^2\mathcal{L}_n(\boldsymbol{\theta}^{*})\|_2\\
+		&\geq \mu_{-}-\frac{\mu_{-}}{2}-2M\|\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\|_2\\
+		&= (1-\frac{2MC^{'}}{\sqrt{n}})\frac{\mu_{-}}{2}.
+	\end{align*}
+	Using (\ref{3.6}) and Jessen inequlity, we have
+	\begin{align*}
+		\mathbb{E}\left[\|\nabla\mathcal{L}_n(\boldsymbol{\theta}^{*})\|_2\right]&=\mathbb{E}\left[\left(\|\nabla\mathcal{L}_n(\boldsymbol{\theta}^{*})\|_2^{k_0}\right)^{1/k_0}\right]\leq \left(\mathbb{E}\left[\|\nabla\mathcal{L}_n(\boldsymbol{\theta}^{*})\|_2^{k_0}\right]\right)^{1/k_0}\\
+		&\leq \frac{C_1G}{\sqrt{n}}.
+	\end{align*}
+	Then event $\mathcal{E}_2$ happens with high probability, which follows from $O_p(Y_n)=O(\mathbb{Y_n})$. Therefore under event $\mathcal{E}_0\cap \mathcal{E}_1\cap \mathcal{E}_2$ we have
+	\begin{align*}
+	\mathcal{L}_n\left(\boldsymbol{\theta}\right)-\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)&\geq \nabla\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)^T\left(\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\right)+(1-\frac{2MC^{'}}{\sqrt{n}})\frac{\mu_{-}}{2}\|\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\|_2^2\\
+	&\geq -\|\nabla\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)\|_2\|\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\|_2+(1-\frac{2MC^{'}}{\sqrt{n}})\frac{\mu_{-}}{2}\|\boldsymbol{\theta}-\boldsymbol{\theta}^{*}\|_2^2\\
+	&\geq -\frac{C^{'}\mu_{-}}{2\sqrt{n}}\frac{C_0}{\sqrt{n}}+(1-\frac{2MC^{'}}{\sqrt{n}})\frac{\mu_{-}}{2}\frac{(C^{'}\mu_{-})^2}{4n}.
+	\end{align*}
+	If we choose sufficiently large $C^{'}$, $\mathcal{L}_n\left(\boldsymbol{\theta}\right)-\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)\geq 0$ holds with high probability.
+\end{proof}\newline
+The following asymptotic result can help us conduct statistical inference, such as interval estimation and hypothesis testing.
+\begin{theorem}
+	Under Assumption \ref{assumption3.1} and Assumption \ref{assumption3.2},
+	\begin{equation}
+	\sqrt{n}\left(\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\right)\stackrel{d}{\longrightarrow}\mathcal{N}\left(0,\widetilde{\Sigma}\right),
+	\end{equation}
+	where 
+	$$
+	\widetilde{\Sigma}=I(\boldsymbol{\theta}^{*})^{-1}\mathbb{E}\left[\nabla L(\boldsymbol{\theta}^{*},X)^{T}\nabla L(\boldsymbol{\theta}^{*},X)\right]I(\boldsymbol{\theta}^{*})^{-1}.
+	$$
+\end{theorem}
+\begin{proof}
+	First we perform Taylor expansion for $\nabla\mathcal{L}_n(\widehat{\boldsymbol{\theta}})$ around $\boldsymbol{\theta}^{*}$,
+	\begin{align*}
+	0=\nabla \mathcal{L}_n(\widehat{\boldsymbol{\theta}})=\nabla\mathcal{L}_n(\boldsymbol{\theta}^{*})+\nabla^2\mathcal{L}_n(\boldsymbol{\theta}^{*})\left(\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\right)+uO_p(\|\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\|_2^2),
+	\end{align*}
+	where $u\in \mathbb{R}^p$ is the unit vector. Then taking simple linear algebra we obtain
+	$$
+	\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}=-\nabla^2\mathcal{L}_n(\boldsymbol{\theta}^{*})^{-1}\nabla\mathcal{L}_n(\boldsymbol{\theta}^{*})+\frac{C}{n}\nabla^2\mathcal{L}_n(\boldsymbol{\theta}^{*})^{-1}u.
+	$$
+	Using law of large numbers, multivariate central limt theorem and Slutsky's lemma, we have
+	\begin{align*}
+	\sqrt{n}\left(\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\right)&=\left(\frac{1}{n}\sum_{i=1}^n\nabla^2 L(\boldsymbol{\theta}^{*},X_i)\right)^{-1}\left(\frac{1}{\sqrt{n}}\sum_{i=1}^n\nabla L(\boldsymbol{\theta}^{*},X_i)\right)+\frac{C}{\sqrt{n}}\nabla^2\mathcal{L}_n(\boldsymbol{\theta}^{*})^{-1}u\\
+	&\stackrel{d}{\longrightarrow}\mathcal{N}\left(0,\widetilde{\Sigma}\right).
+	\end{align*}
+\end{proof}\newline
+\textbf{Remark.} The following plug-in estimator is a consistent estimator for $\widetilde{\Sigma}$,
+\begin{equation}
+\left(\frac{1}{n}\sum_{i=1}^n\nabla^2 L(\boldsymbol{\theta}^{*},X_i)\right)^{-1}\left(\frac{1}{n}\sum_{i=1}^n\nabla L(\boldsymbol{\theta}^{*},X_i)L(\boldsymbol{\theta}^{*},X_i)^T\right)\left(\frac{1}{n}\sum_{i=1}^n\nabla^2 L(\boldsymbol{\theta}^{*},X_i)\right)^{-1}
+\end{equation}
+More generally, by Assumption \ref{assumption3.2} we set $\rho \in (0,1)$, then choosing the potentially smaller radius $\delta_{\rho}=\min \{\rho, \rho \mu_{-} / 4 L\}$. We can define the following good events
+\begin{align*}
+&\mathcal{E}_{0}:=\left\{\frac{1}{n} \sum_{i=1}^{n} M\left(X_{i}\right) \leq 2 M\right\},\\
+&\mathcal{E}_{1}:=\left\{\left\|\nabla^{2} \mathcal{L}_n\left(\boldsymbol{\theta}^{*},X\right)-\nabla^{2} \mathcal{L}\left(\boldsymbol{\theta}^{*}\right)\right\|_{2} \leq \frac{\rho\mu_{-}}{2}\right\},\\
+&\mathcal{E}_2:=\left\{\|\nabla\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)\|_2\leq \frac{(1-\rho) \mu_{-} \delta_{\rho}}{2}\right\}.
+\end{align*}
+The following lemma is Lemma 6 in \citet{zhang2013communication}.
+\begin{lemma}\label{lemma3.7}
+	Under the events $\mathcal{E}_0,\ \mathcal{E}_1$ and $\mathcal{E}_2$, we have
+	\begin{equation}
+	\left\|\theta_{1}-\theta^{*}\right\|_{2} \leq \frac{2\left\|\nabla F_{1}\left(\theta^{*}\right)\right\|_{2}}{(1-\rho) \mu_{-}}, \quad \text { and } \quad \nabla^{2} F_{1}(\theta) \succeq(1-\rho) \mu_{-} I_{p \times p}.
+	\end{equation}
+\end{lemma}
+We can assume that $\|\hat \theta-\theta^{*}\|_2\leq R$, then make decomposition as
+\begin{align*}
+\mathbb{E}\left[\left\|\hat\theta-\theta^{*}\right\|_{2}^{k}\right] &=\mathbb{E}\left[1_{(\mathcal{E})}\left\|\hat\theta-\theta^{*}\right\|_{2}^{k}\right]+\mathbb{E}\left[1_{\left(\mathcal{E}^{c}\right)}\left\|\hat\theta-\theta^{*}\right\|_{2}^{k}\right] \\
+& \leq \frac{2^{k} \mathbb{E}\left[1_{(\mathcal{E})}\left\|\nabla \mathcal{L}_n\left(\theta^{*}\right)\right\|_{2}^{k}\right]}{(1-\rho)^{k} \lambda^{k}}+\mathbb{P}\left(\mathcal{E}^{c}\right) R^{k} \\
+& \leq \frac{2^{k} \mathbb{E}\left[\left\|\nabla \mathcal{L}_n\left(\theta^{*}\right)\right\|_{2}^{k}\right]}{(1-\rho)^{k} \lambda^{k}}+\mathbb{P}\left(\mathcal{E}^{c}\right) R^{k}.
+\end{align*}
+Using Assumption \ref{assumption3.1}, Assumption \ref{assumption3.2} and Lemma \ref{lemma 3.4}, we can prove
+$$
+\mathbb{P}\left(\mathcal{E}^{c}\right)\leq C_{2} \frac{1}{n^{k_{2} / 2}}+C_{1} \frac{\log ^{k_{1} / 2}(2 d) H^{k_{1}}}{n^{k_{1} / 2}}+C_{0} \frac{G^{k_{0}}}{n^{k_{0} / 2}},
+$$
+for some universal constants $C_0,\ C_1,\ C_2$. Therefore for any $k\in \mathbb{N}$ with $k \leq \min \left\{k_{0}, k_{1}, k_{2}\right\}$ we have
+\begin{equation}\label{3.13}
+\mathbb{E}\left[\left\|\theta_{1}-\theta^{*}\right\|_{2}^{k}\right]=\mathcal{O}\left(n^{-k / 2} \cdot \frac{G^{k}}{(1-\rho)^{k} \lambda^{k}}+n^{-k_{0} / 2}+n^{-k_{1} / 2}+n^{-k_{2} / 2}\right)=\mathcal{O}\left(n^{-k / 2}\right).
+\end{equation}
+We can also obtain the $\ell_2$ error bound $\|\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\|_2=O_p\left(\frac{1}{\sqrt{n}}\right)$ form (\ref{3.13}).
+\bibliography{docbib}
+\end{document}
