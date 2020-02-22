@@ -1,6 +1,7 @@
 div.navbar-collapse ul.navbar-nav li {
-  font-family: Times, Times New Roman, Georgia, serif;
   font-size: 20px;
+  font-family: Arial Rounded MT Bold;;
+  color: #4169E1;
 }
 
 
@@ -9,12 +10,30 @@ body {
   font-size: 13pt;
   text-align: left;
   color: black;
-  font-family: cursive;
+  font-family: Times, Times New Roman, Georgia, serif;
 }
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1
+{
   margin-bottom: 0.5rem;
+  font-size: 15pt;
+  font-weight: 300;
+  line-height: 1.1;
+  color: #000080;
+  font-family: Arial Rounded MT Bold, STXingkai;
+}
+h2
+{
+  margin-bottom: 0.5rem;
+  font-size: 15pt;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #006400;
+}
+h3
+{
+  margin-bottom: 0.5rem;
+  font-size: 14pt;
   font-weight: 600;
   line-height: 1.1;
 }

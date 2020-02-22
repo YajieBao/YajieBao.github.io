@@ -2,7 +2,7 @@ name: "Yajie Bao"
 output_dir: "."
 navbar:
   title: "Yajie Bao"
-  font-family: Gill Sans Extrabold, cursive;
+  color: #4169E1;
   left:
     - text: "Home"
       icon: fa-home
