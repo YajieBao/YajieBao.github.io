@@ -16,7 +16,7 @@ __Mobile:__ (+86)13162161186
 </div>
 
 <div class = "row2">
-<img src="./figs/gulangyu.jpeg" style="width:150%; margin-left: 5px; 
+<img src="./figs/gulangyu.jpeg" style="width:80%; margin-left: 5px; 
 margin-top: 20px; margin-bottom: 0px" align="left">
 </div>
 </div>
