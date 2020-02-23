@@ -63,7 +63,7 @@ a:hover {
 
 
 .row-wrap {
-overflow: hidden;
+overflow-y: hidden;
 }
 .row1, .row2 {
 margin-bottom: -1000px;
