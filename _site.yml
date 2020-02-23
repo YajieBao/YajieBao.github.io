@@ -1,7 +1,6 @@
 name: "Yajie Bao"
 output_dir: "."
 navbar:
-  title: "Yajie Bao"
   color: #4169E1;
   left:
     - text: "Home"

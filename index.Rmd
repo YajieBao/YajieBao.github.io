@@ -1,7 +1,6 @@
 ---
 title: "Yajie Bao"
 ---
-<div class="box">
 <div class="row-wrap">
 <div class = "row1">
 ## About me 
@@ -17,7 +16,7 @@ __Mobile:__ (+86)13162161186
 </div>
 
 <div class = "row2">
-<img src="./figs/gulangyu.jpeg" style="width:120%; margin-left: 10px; 
+<img src="./figs/gulangyu.jpeg" style="width:150%; margin-left: 5px; 
 margin-top: 20px; margin-bottom: 0px" align="left">
 </div>
 </div>
@@ -49,5 +48,3 @@ __B.S. degree thesis:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Th
 ### Notes of optimization
 
   - Convex optimization [PDF](./docs/Convex Optimization.pdf)
-
-</div>

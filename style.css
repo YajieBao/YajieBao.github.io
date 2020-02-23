@@ -3,11 +3,6 @@ div.navbar-collapse ul.navbar-nav li {
   font-family: Arial Rounded MT Bold;;
   color: #4169E1;
 }
-.box{
-  padding: 10px;
-  margin:0 auto; 
-  width:900px;
-}
 
 body {
   margin: 5;
@@ -74,12 +69,11 @@ margin-bottom: -1000px;
 padding-bottom: 1000px;
 }
 .row1{
-width: 500px;
+width: 600px;
 float: left;
 }
 .row2{
 width: 300px;
-color: #FFF;
 float: left;
 _margin-right: -6px; //fix ie6
 }
