@@ -13,11 +13,6 @@ navbar:
     - text: "Projects"
       icon: ion-star
       href: projects.html
-  right:
-    - icon: fa-envelope fa-lg
-      href: mailto:<baoyajie2019stat@sjtu.edu.cn>
-    - icon: fa-github fa-lg
-      href: https://github.com/YajieBao
 output:
   html_document:
     theme: journal

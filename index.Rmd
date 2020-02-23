@@ -1,15 +1,11 @@
 ---
 title: "Yajie Bao"
 ---
-<div class = "leftcolumn">
+<div class="box">
+<div class="row-wrap">
+<div class = "row1">
 ## About me 
 I'm currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
-</div>
-
-<div class = "rightcolumn">
-<img src="./figs/gulangyu.jpeg" style="width:120%; margin-left: 10px; 
-margin-top: 20px; margin-bottom: 0px" align="right">
-</div>
 
 ## Contact 
 
@@ -18,7 +14,13 @@ __Address:__ Room 505 (Table 17), No.6 Science Building, Shanghai Jiao Tong Univ
 __Email:__ baoyajie2019stat@sjtu.edu.cn
 
 __Mobile:__ (+86)13162161186
+</div>
 
+<div class = "row2">
+<img src="./figs/gulangyu.jpeg" style="width:120%; margin-left: 10px; 
+margin-top: 20px; margin-bottom: 0px" align="left">
+</div>
+</div>
 ## Research interests
 
   - High-Dimensional statistics
@@ -47,4 +49,5 @@ __B.S. degree thesis:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Th
 ### Notes of optimization
 
   - Convex optimization [PDF](./docs/Convex Optimization.pdf)
-  
+
+</div>
