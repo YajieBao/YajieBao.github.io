@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.9)  22 FEB 2020 14:55
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.6.9)  24 FEB 2020 15:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1094,23 +1094,30 @@ File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 [1
 
 
-] [2] [3] [4] [5] [6] [7] [8] [9] (./document.bbl) [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 450.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 450.
+] [2] [3]
+Overfull \hbox (19.16675pt too wide) in paragraph at lines 228--229
+[]\TU/lmr/m/it/12 There exists an absolute constant $\OML/cmm/m/it/12 c$ \TU/lm
+r/m/it/12 such that if $\OT1/cmr/bx/n/12 X[]\OML/cmm/m/it/12 ; [] ; \OT1/cmr/bx
+/n/12 X[] \OMS/cmsy/m/n/12 2
+ []
+
+[4] [5] [6] [7] [8] [9] [10] [11] (./document.bbl [12]) [13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 542.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 542.
  (./document.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 450.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 450.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 542.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 542.
 Package rerunfilecheck Info: File `document.out' has not changed.
-(rerunfilecheck)             Checksum: 6F9ECB2BE40DFA9F2233676F263D25AF.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 450.
+(rerunfilecheck)             Checksum: 0FFDC42F4341893C5926D37148381235.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 542.
  ) 
 Here is how much of TeX's memory you used:
- 33044 strings out of 492916
- 610892 string characters out of 6133346
- 786808 words of memory out of 5000000
- 36659 multiletter control sequences out of 15000+600000
- 543460 words of font info for 79 fonts, out of 8000000 for 9000
+ 33066 strings out of 492916
+ 611300 string characters out of 6133346
+ 787776 words of memory out of 5000000
+ 36680 multiletter control sequences out of 15000+600000
+ 543468 words of font info for 80 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 62i,15n,81p,496b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,15n,81p,496b,479s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on document.pdf (10 pages).
+Output written on document.pdf (13 pages).

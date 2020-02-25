@@ -44,7 +44,11 @@ __B.S. degree thesis:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Th
 - Probability Tools [PDF](./docs/pt.pdf)
 - Theoretical Results of Lasso Solutions [PDF](./writings/Lasso/document.pdf)
 - Stochastic Optimization [PDF](./writings/Stochastic Optimization/document.pdf)
+
+### High-dimensional Statistics
+
 - Step into High-dimensional Statistics: Sparse Mean Estimation [PDF](./writings/Sparse estimation/document.pdf)
+- High-dimensional Regression and M-estimator [PDF](./writings/Regression/document.pdf)
 
 ### Notes of optimization
 

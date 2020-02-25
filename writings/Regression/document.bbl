@@ -1,9 +1,14 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{11}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Boyd et~al.(2004)Boyd, Boyd, and Vandenberghe]{boyd2004convex}
+S.~Boyd, S.~P. Boyd, and L.~Vandenberghe.
+\newblock \emph{Convex optimization}.
+\newblock Cambridge university press, 2004.
 
 \bibitem[Cai et~al.(2011)Cai, Liu, and Luo]{cai2011constrained}
 T.~Cai, W.~Liu, and X.~Luo.
@@ -11,6 +16,26 @@ T.~Cai, W.~Liu, and X.~Luo.
   matrix estimation.
 \newblock \emph{Journal of the American Statistical Association}, 106\penalty0
   (494):\penalty0 594--607, 2011.
+
+\bibitem[Chen et~al.(2012)Chen, Gittens, and Tropp]{chen2012masked}
+R.~Y. Chen, A.~Gittens, and J.~A. Tropp.
+\newblock The masked sample covariance estimator: an analysis using matrix
+  concentration inequalities.
+\newblock \emph{Information and Inference: A Journal of the IMA}, 1\penalty0
+  (1):\penalty0 2--20, 2012.
+
+\bibitem[De~Acosta et~al.(1981)]{de1981inequalities}
+A.~De~Acosta et~al.
+\newblock Inequalities for $ b $-valued random vectors with applications to the
+  strong law of large numbers.
+\newblock \emph{The Annals of Probability}, 9\penalty0 (1):\penalty0 157--161,
+  1981.
+
+\bibitem[Jin et~al.(2019)Jin, Netrapalli, Ge, Kakade, and Jordan]{jin2019short}
+C.~Jin, P.~Netrapalli, R.~Ge, S.~M. Kakade, and M.~I. Jordan.
+\newblock A short note on concentration inequalities for random vectors with
+  subgaussian norm.
+\newblock \emph{arXiv preprint arXiv:1902.03736}, 2019.
 
 \bibitem[Jordan et~al.(2019)Jordan, Lee, and Yang]{jordan2019communication}
 M.~I. Jordan, J.~D. Lee, and Y.~Yang.

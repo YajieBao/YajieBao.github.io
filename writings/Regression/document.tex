@@ -65,11 +65,12 @@
 %\address{Shanghai Jiao Tong University}
 %\email{baoyajie2019stat@sjtu.edu.cn}
 \maketitle
-\section{Preliminaries on random matrix}
+\section{Preliminaries on random matrix and random vector}
 The root of high-dimensional statistics is dating back to work on random matrix theory and high-dimensional testing problems (\citet{negahban2012unified}). To develop theoretical results on high-dimensional regression and M-estimator, we need to introduce some important spectral norm concentration inequalities of random matrix. It's worthy to mention that the "High-dimensional" in this article means that
 $$
 p=n^{\alpha},\quad \alpha\in (0,1).
 $$
+\subsection{Concentration inequalities on random matrix norm}
 For simple normal case, here we states Lemma 9 without proof in \citet{wainwright2009sharp}:
 \begin{lemma}
 	For $k\leq n$, let $X\in \mathbb{R}^{n\times k}$ have i.i.d rows $X_{i} \sim N(0, \Lambda)$ and $\delta(n, k, t):=2(\sqrt{\frac{k}{n}}+t)+(\sqrt{\frac{k}{n}}+t)^{2}$
@@ -200,8 +201,48 @@ then if $\lambda_{min}(\Sigma)>0$ we have
 \begin{equation}
 \left\|\Sigma_{n}^{-1}-\Sigma^{-1}\right\|=O_p\left(\sqrt{\frac{p}{n}}\right).
 \end{equation}
-
-\section{High dimensional linear regression}
+\subsection{Concentration inequalities on random vextor norm}
+We start with the definitions of subGaussian random vectors and norm-subGaussian random vectors.
+\begin{definition}
+	A random vector $\boldsymbol{X}\in \mathbb{R}^d$ is subGaussian, if there exists $\sigma\in \mathbb{R}$ so that
+	\begin{equation}
+	\mathbb{E} e^{\langle\mathbf{v}, \mathbf{X}-\mathbb{E} \mathbf{X}\rangle} \leq e^{\frac{\|\mathbf{v}\| \mathbf{l}^{2} \sigma^{2}}{2}}, \quad \forall \mathbf{v} \in \mathbb{R}^{d}.
+	\end{equation}
+\end{definition}
+\begin{definition}
+	A random vector $\boldsymbol{X}\in \mathbb{R}^d$ is norm-subGaussian ($\mathrm{nSG}(\sigma)$), if there exists $\sigma\in \mathbb{R}$ so that
+	\begin{equation}
+	\mathbb{P}(\|\mathbf{X}-\mathbb{E} \mathbf{X}\| \geq t) \leq 2 e^{-\frac{t^{2}}{2 \sigma^{2}}}, \quad \forall t \in \mathbb{R}.
+	\end{equation}
+\end{definition}
+Norm-subGaussian random vectors is proposed by \citet{jin2019short}, which includes both subGaussian (with a smaller $\sigma$ parameter) and bounded norm random vectors as special cases.
+\begin{lemma}
+	There exists absolute constant c so that following random vectors are all $\mathrm{nSG}(c\cdot \sigma)$
+	\begin{enumerate}
+		\item A bounded random vector $\mathbf{X} \in \mathbb{R}^{d}$ so that $\|\mathbf{X}\| \leq \sigma$.
+		\item A random vector $\mathbf{X} \in \mathbb{R}^{d}$ where $\mathbf{X}=\xi \mathbf{e}_{1}$ and random variable $\xi \in \mathbb{R}$ is $\sigma-$subGaussian. 
+		\item A random vector $\mathbf{X} \in \mathbb{R}^{d}$ that is $(\sigma / \sqrt{d})-$subGaussian.
+	\end{enumerate}
+\end{lemma}
+\begin{theorem}[\citet{jin2019short}]\label{theorem1.9}
+	There exists an absolute constant $c$ such that if $\mathbf{X}_{1}, \ldots, \mathbf{X}_{n} \in \mathbb{R}^{d}$ are independent zero-mean $\mathrm{nSG}(\sigma)$ random vectors. Then for any $\delta > 0$, with probability at least $1-\delta$
+	\begin{equation}
+	\left\|\sum_{i=1}^{n} \mathbf{X}_{i}\right\| \leq c \cdot \sqrt{\sum_{i=1}^{n} \sigma_{i}^{2} \log \frac{2 d}{\delta}}.
+	\end{equation}
+\end{theorem}
+From Theorem \ref{theorem1.9}, we can obtain that
+$$
+\left\|\frac{1}{n}\sum_{i=1}^{n} \mathbf{X}_{i}\right\|=O_p\left(\sqrt{\frac{\log d}{n}}\right).
+$$
+And in section \ref{section2}, we will prove that the random vectors $\boldsymbol{X}_i$ with sub-gaussian coordinates assumption has the following convergence rate
+$$
+\left\|\frac{1}{n}\sum_{i=1}^{n} \mathbf{X}_{i}\right\|=O_p\left(\sqrt{\frac{d\log d}{n}}\right).
+$$
+In section \ref{section3}, we assume that the random vectors $\boldsymbol{X}_i$ with bounded expectation of norm, i.e., $\mathbb{E}\left(\|X_i\|_2^2\right)\leq M$, which leads
+$$
+\left\|\frac{1}{n}\sum_{i=1}^{n} \mathbf{X}_{i}\right\|=O_p\left(\sqrt{\frac{1}{n}}\right).
+$$
+\section{High dimensional linear regression}\label{section2}
 Now consider the following linear regression model with random ensembles:
 \begin{equation}\label{2.1}
 y_i=\boldsymbol{X}_i^T\boldsymbol{\beta}^{*}+e_i,\quad i=1,2,...,n
@@ -270,7 +311,7 @@ The theorem above implies that if $p\log p=o(n)$, LSE is consistent. Next we wil
 	Then the result follows from Slutsky's Lemma.
 \end{proof}
 
-\section{High dimensional M estimator}
+\section{High dimensional M estimator}\label{section3}
 Given sample $\{X_i,i=1,2,...,n\}\in \mathcal{X}_n$ is drawn independently according to
 some distribution $\mathbb{P}$. And in the well-specified case the distribution
 $\mathcal{P}$ is a member of parameterized family $\left\{\mathbb{P}_{\theta}, \theta \in \Omega\right\}$ , where $\boldsymbol{\Omega}$ is the parameter space, then the goal is to estimate parameter $\boldsymbol{\theta}^{*}$. For mis-specified models, in which case the target parameter $\boldsymbol{\theta}^{*}$ is defined as the minimizer of the population lost function (see \citet{wainwright2019high}). 
@@ -301,7 +342,7 @@ The lost function $L(X_i,\boldsymbol{\theta})$ is twice differentiable with resp
 \end{assumption}
 \begin{assumption}[Smoothness]\label{assumption3.2}
 	There exists some positive constant $(G,L)$ and positive integers $(k_0,k_1)$, such that
-	\begin{equation}
+	\begin{equation}\label{3.4}
 	\mathbb{E}\left[\|\nabla L(\boldsymbol{\theta},X)\|_2^{k_0}\right]\leq G^{k_0},\quad \mathbb{E}\left[\|\nabla^2L(\boldsymbol{\theta},X)-\nabla^2\mathcal{L}(\boldsymbol{\theta})\|_2^{k_1}\right]\leq L^{k_1}.
 	\end{equation}
 	Moreover, for all $\boldsymbol{\theta}_1,\boldsymbol{\theta}_2\in U(\boldsymbol{\theta}^{*},\rho)$ (a ball around the truth $\boldsymbol{\theta}^{*}$ with radius $\rho>0$) there exists some positive constant $M$ and some positive integer $k_2$ such that
@@ -331,11 +372,11 @@ Before bound the $\ell_2$ error between the optimization solution $\widehat{\bol
 	which is a contradiction.
 \end{proof}\newline
 Next we state Lemma 7 in \citet{zhang2013communication} without proof as following:
-\begin{lemma}
+\begin{lemma}\label{lemma3.5}
 	Under Assumption \ref{assumption3.2}, there exist some constants $C_1$ and $C_2$ (dependent only on the moments $k_0$ and $k_1$ respectively) such that
 	\begin{align}
 	\mathbb{E}\left[\left\|\nabla \mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)\right\|_{2}^{k_{0}}\right] &\leq C_1 \frac{G^{k_{0}}}{n^{k_{0} / 2}},\label{3.6}\\
-	\mathbb{E}\left[\left\|\nabla^{2} \mathcal{L}_n\left(\boldsymbol{\theta}^{*},X\right)-\nabla^{2} \mathcal{L}\left(\boldsymbol{\theta}^{*}\right)\right\|_{2}^{k_{1}}\right] &\leq C_2 \frac{\log ^{k_{1} / 2}(2 p) H^{k_{1}}}{n^{k_{1} / 2}}.\label{3.7}
+	\mathbb{E}\left[\left\|\nabla^{2} \mathcal{L}_n\left(\boldsymbol{\theta}^{*},X\right)-\nabla^{2} \mathcal{L}\left(\boldsymbol{\theta}^{*}\right)\right\|_{2}^{k_{1}}\right] &\leq C_2 \frac{\log ^{k_{1} / 2}(2 p) L^{k_{1}}}{n^{k_{1} / 2}}.\label{3.7}
 	\end{align}
 \end{lemma}
 
@@ -388,6 +429,14 @@ Next we state Lemma 7 in \citet{zhang2013communication} without proof as followi
 	\end{align*}
 	If we choose sufficiently large $C^{'}$, $\mathcal{L}_n\left(\boldsymbol{\theta}\right)-\mathcal{L}_n\left(\boldsymbol{\theta}^{*}\right)\geq 0$ holds with high probability.
 \end{proof}\newline
+\textbf{Remark. }Note that, if we substitute moment condition for gradient in (\ref{3.4}) by
+$$
+\mathbb{E}\left[\|\nabla L(\boldsymbol{\theta},X)\|_2^{k_0}\right]\leq p^{k_0/2}G^{k_0},
+$$
+we can obtain the new convergence rate
+$$
+\|\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\|=O_p\left(\sqrt{\frac{p}{n}}\right).
+$$
 The following asymptotic result can help us conduct statistical inference, such as interval estimation and hypothesis testing.
 \begin{theorem}
 	Under Assumption \ref{assumption3.1} and Assumption \ref{assumption3.2},
@@ -446,5 +495,48 @@ for some universal constants $C_0,\ C_1,\ C_2$. Therefore for any $k\in \mathbb{
 \mathbb{E}\left[\left\|\theta_{1}-\theta^{*}\right\|_{2}^{k}\right]=\mathcal{O}\left(n^{-k / 2} \cdot \frac{G^{k}}{(1-\rho)^{k} \lambda^{k}}+n^{-k_{0} / 2}+n^{-k_{1} / 2}+n^{-k_{2} / 2}\right)=\mathcal{O}\left(n^{-k / 2}\right).
 \end{equation}
 We can also obtain the $\ell_2$ error bound $\|\widehat{\boldsymbol{\theta}}-\boldsymbol{\theta}^{*}\|_2=O_p\left(\frac{1}{\sqrt{n}}\right)$ form (\ref{3.13}).
+There are two very useful concentration inequlities for random vector and random matrix, which is used to prove Lemma \ref{lemma3.5} (Lemma 7 in \citet{zhang2013communication}).
+\begin{lemma}[\citet{de1981inequalities}]
+	Let $k\geq 2$ and $X_i$ be a sequence of independent random vectors in a separable Banach space with norm $\|\cdot\|$ and $\mathbb{E}\left[\left\|X_{i}\right\|^{k}\right]<\infty$. There exists a finite constant $C_k$ such that
+	\begin{equation}
+	\mathbb{E}\left[\left|\left\|\sum_{i=1}^{n} X_{i}\right\|-\mathbb{E}\left[\left\|\sum_{i=1}^{n} X_{i}\right\|\right]\right|^{k}\right]\leq C_{k}\left[\left(\sum_{i=1}^{n} \mathbb{E}\left[\left\|X_{i}\right\|^{2}\right]\right)^{k / 2}+\sum_{i=1}^{n} \mathbb{E}\left[\left\|X_{i}\right\|^{k}\right]\right].
+	\end{equation}
+\end{lemma}
+\begin{lemma}[\citet{chen2012masked}]
+	Let $X_i \in \mathbb{R}^{d\times d}$ be independent and symmetrically distributed Hermitian matrices. Then
+	\begin{equation}
+	\mathbb{E}\left[\left\|\sum_{i=1}^{n} X_{i}\right\|^{k}\right]^{1 / k} \leq \sqrt{2 e \log d}\left\|\left(\sum_{i=1}^{n} \mathbb{E}\left[X_{i}^{2}\right]\right)^{1 / 2}\right\|+2 e \log d\left(\mathbb{E}\left[\max _{i}\left\|X_{i}\right\|^{k}\right]\right)^{1 / k}.
+	\end{equation}
+\end{lemma}
+\section{Newton Raphson algorithm}
+For optimization probelm (\ref{3.3}), there are no analytic solutions usually. And Newton Raphson algorithm use iteration method to approximate solution $\widehat{\boldsymbol{\theta}}$,
+\begin{equation}
+\boldsymbol{\theta}_t=\boldsymbol{\theta}_{t-1}-\eta \nabla^2\mathcal{L}_n(\boldsymbol{\theta}_{t-1})^{-1}\nabla\mathcal{L}_n(\boldsymbol{\theta}_{t-1}),
+\end{equation}
+where $\eta\in (0,1)$ is step size. According to optimal condition we have
+\begin{align*}
+\boldsymbol{\theta}_t-\widehat{\boldsymbol{\theta}}&=\boldsymbol{\theta}_{t-1}-\widehat{\boldsymbol{\theta}}-\eta\nabla^2\mathcal{L}_n(\boldsymbol{\theta}_{t-1})^{-1}\nabla\mathcal{L}_n(\boldsymbol{\theta}_{t-1})\\
+&=\boldsymbol{\theta}_{t-1}-\widehat{\boldsymbol{\theta}}-\eta\nabla^2\mathcal{L}_n(\boldsymbol{\theta}_{t-1})^{-1}\left(\nabla\mathcal{L}_n(\boldsymbol{\theta}_{t-1})-\nabla\mathcal{L}_n(\widehat{\boldsymbol{\theta}})\right)\\
+&=\boldsymbol{\theta}_{t-1}-\widehat{\boldsymbol{\theta}}-\eta\nabla^2\mathcal{L}_n(\boldsymbol{\theta}_{t-1})^{-1}\nabla^2\mathcal{L}_n(\widetilde{\boldsymbol{\theta}})\left(\boldsymbol{\theta}_{t-1}-\widehat{\boldsymbol{\theta}}\right)\\
+&=\left(I_p-\eta\nabla^2\mathcal{L}_n(\boldsymbol{\theta}_{t-1})^{-1}\nabla^2\mathcal{L}_n(\widetilde{\boldsymbol{\theta}})\right)\left(\boldsymbol{\theta}_{t-1}-\widehat{\boldsymbol{\theta}}\right),
+\end{align*}
+where $\widetilde{\boldsymbol{\theta}}$ is some point between $\boldsymbol{\theta}_{t-1}$ and $\widehat{\boldsymbol{\theta}}$. Then we obtain
+$$
+\left\|\boldsymbol{\theta}_t-\widehat{\boldsymbol{\theta}}\right\|_2 \leq \left\|I_p-\eta\nabla^2\mathcal{L}_n(\boldsymbol{\theta}_{t-1})^{-1}\nabla^2\mathcal{L}_n(\widetilde{\boldsymbol{\theta}})\right\|_2\left\|\boldsymbol{\theta}_{t-1}-\widehat{\boldsymbol{\theta}}\right\|_2,
+$$
+if we assume that for some positive constant $c$ so that
+\begin{equation}\label{4.2}
+c\leq \lambda\left(\nabla^2\mathcal{L}_n(\boldsymbol{\theta}_{t-1})^{-1}\nabla^2\mathcal{L}_n(\widetilde{\boldsymbol{\theta}})\right) \leq c^{-1},
+\end{equation}
+then there exists some $\rho_{\eta}\in (0,1)$
+$$
+\left\|\boldsymbol{\theta}_t-\widehat{\boldsymbol{\theta}}\right\|_2\leq \rho_{\eta}\left\|\boldsymbol{\theta}_{t-1}-\widehat{\boldsymbol{\theta}}\right\|_2\leq \cdots \leq \rho_{\eta}^t\left\|\boldsymbol{\theta}_{0}-\widehat{\boldsymbol{\theta}}\right\|_2,
+$$
+which achives exponential convergence rate. Obviously, the error of Newton update can be bounded by
+$$
+\left\|\boldsymbol{\theta}_t-\boldsymbol{\theta}^{*}\right\|_2=O\left(\rho_{\eta}^ta_n\right)+O_p\left(\nabla\mathcal{L}_n(\boldsymbol{\theta}^{*})\right),
+$$
+where $a_n$ is the initial estimation error bound $\left\|\boldsymbol{\theta}_0-\boldsymbol{\theta}^{*}\right\|_2$.
+Condition (\ref{4.2}) is quite rigorous, and the general Newton update convergence analysis can be found in \citet{boyd2004convex}.
 \bibliography{docbib}
 \end{document}
