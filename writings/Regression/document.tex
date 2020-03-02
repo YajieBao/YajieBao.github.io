@@ -465,7 +465,7 @@ The following asymptotic result can help us conduct statistical inference, such 
 \end{proof}\newline
 \textbf{Remark.} The following plug-in estimator is a consistent estimator for $\widetilde{\Sigma}$,
 \begin{equation}
-\left(\frac{1}{n}\sum_{i=1}^n\nabla^2 L(\boldsymbol{\theta}^{*},X_i)\right)^{-1}\left(\frac{1}{n}\sum_{i=1}^n\nabla L(\boldsymbol{\theta}^{*},X_i)L(\boldsymbol{\theta}^{*},X_i)^T\right)\left(\frac{1}{n}\sum_{i=1}^n\nabla^2 L(\boldsymbol{\theta}^{*},X_i)\right)^{-1}
+\left(\frac{1}{n}\sum_{i=1}^n\nabla^2 L(\widehat{\boldsymbol{\theta}},X_i)\right)^{-1}\left(\frac{1}{n}\sum_{i=1}^n\nabla L(\widehat{\boldsymbol{\theta}},X_i)L(\widehat{\boldsymbol{\theta}},X_i)^T\right)\left(\frac{1}{n}\sum_{i=1}^n\nabla^2 L(\widehat{\boldsymbol{\theta}},X_i)\right)^{-1}
 \end{equation}
 More generally, by Assumption \ref{assumption3.2} we set $\rho \in (0,1)$, then choosing the potentially smaller radius $\delta_{\rho}=\min \{\rho, \rho \mu_{-} / 4 L\}$. We can define the following good events
 \begin{align*}
