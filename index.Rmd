@@ -48,7 +48,7 @@ __B.S. degree thesis:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Th
 ### High-dimensional Statistics
 
 - Step into High-dimensional Statistics: Sparse Mean Estimation [PDF](./writings/Sparse estimation/document.pdf)
-- High-dimensional Regression and M-estimator [PDF](./writings/Regression/document.pdf)
+- Linear Regression and M-estimator for Diverging $p$ [PDF](./writings/Regression/document.pdf)
 
 ### Notes of optimization
 

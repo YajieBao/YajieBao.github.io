@@ -59,14 +59,14 @@
 \bibliographystyle{abbrvnat}
 
 \begin{document}
-\title{High-dimensional Regression and M-estimator}
+\title{Linear Regression and M-estimator for Diverging $p$}
 
 \author{Yajie Bao\thanks{Department of Mathematics, Shanghai Jiao Tong University, Eamil: baoyajie2019stat@sjtu.edu.cn}}
 %\address{Shanghai Jiao Tong University}
 %\email{baoyajie2019stat@sjtu.edu.cn}
 \maketitle
 \section{Preliminaries on random matrix and random vector}
-The root of high-dimensional statistics is dating back to work on random matrix theory and high-dimensional testing problems (\citet{negahban2012unified}). To develop theoretical results on high-dimensional regression and M-estimator, we need to introduce some important spectral norm concentration inequalities of random matrix. It's worthy to mention that the "High-dimensional" in this article means that
+The root of high-dimensional statistics is dating back to work on random matrix theory and high-dimensional testing problems (\citet{negahban2012unified}). To develop theoretical results on linear regression and M-estimator in the diverging dimension case, we need to introduce some important spectral norm concentration inequalities of random matrix. It's worthy to mention that the "High-dimensional" in this article means that
 $$
 p=n^{\alpha},\quad \alpha\in (0,1).
 $$
@@ -242,7 +242,7 @@ In section \ref{section3}, we assume that the random vectors $\boldsymbol{X}_i$ 
 $$
 \left\|\frac{1}{n}\sum_{i=1}^{n} \mathbf{X}_{i}\right\|=O_p\left(\sqrt{\frac{1}{n}}\right).
 $$
-\section{High dimensional linear regression}\label{section2}
+\section{Linear regression}\label{section2}
 Now consider the following linear regression model with random ensembles:
 \begin{equation}\label{2.1}
 y_i=\boldsymbol{X}_i^T\boldsymbol{\beta}^{*}+e_i,\quad i=1,2,...,n
@@ -311,7 +311,7 @@ The theorem above implies that if $p\log p=o(n)$, LSE is consistent. Next we wil
 	Then the result follows from Slutsky's Lemma.
 \end{proof}
 
-\section{High dimensional M estimator}\label{section3}
+\section{M estimator}\label{section3}
 Given sample $\{X_i,i=1,2,...,n\}\in \mathcal{X}_n$ is drawn independently according to
 some distribution $\mathbb{P}$. And in the well-specified case the distribution
 $\mathcal{P}$ is a member of parameterized family $\left\{\mathbb{P}_{\theta}, \theta \in \Omega\right\}$ , where $\boldsymbol{\Omega}$ is the parameter space, then the goal is to estimate parameter $\boldsymbol{\theta}^{*}$. For mis-specified models, in which case the target parameter $\boldsymbol{\theta}^{*}$ is defined as the minimizer of the population lost function (see \citet{wainwright2019high}). 
@@ -537,6 +537,37 @@ $$
 \left\|\boldsymbol{\theta}_t-\boldsymbol{\theta}^{*}\right\|_2=O\left(\rho_{\eta}^ta_n\right)+O_p\left(\nabla\mathcal{L}_n(\boldsymbol{\theta}^{*})\right),
 $$
 where $a_n$ is the initial estimation error bound $\left\|\boldsymbol{\theta}_0-\boldsymbol{\theta}^{*}\right\|_2$.
-Condition (\ref{4.2}) is quite rigorous, and the general Newton update convergence analysis can be found in \citet{boyd2004convex}.
+Condition (\ref{4.2}) is quite rigorous, and the general Newton update convergence analysis can be found in \citet{boyd2004convex}. Next we give the convergence rate of Newton method in \citet{bubeck2014theory}, which requires bound of initial error.
+\begin{lemma}[Theorem 5.3, \citet{bubeck2014theory}]
+	Assume that $f$ has a Lipschitz Hessian, i.e., $\left\|\nabla^{2} f(x)-\nabla^{2} f(y)\right\| \leq M\|x-y\|$. Let $x^{*}$ be local minimum of $f$ with strictly positive Hessian, that is, $\nabla^{2} f\left(x^{*}\right) \succeq \mu \mathrm{I}_{n}, \mu>0$. Suppose that the initial starting point $x_0$ of Newton’s method is such that
+	$$
+	\left\|x_{0}-x^{*}\right\| \leq \frac{\mu}{2 M}.
+	$$
+	Then Newton’s method is well-defined and converges to $x^{*}$ at a quadratic rate:
+	\begin{equation}
+	\left\|x_{k+1}-x^{*}\right\| \leq \frac{M}{\mu}\left\|x_{k}-x^{*}\right\|^{2}.
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	First note that,
+	\begin{align*}
+	\nabla f(x_k) - \nabla f(x^{*}) = \int_{0}^{1}\nabla^2f(x^{*}+s(x_k - x^{*}))(x_k-x^{*})ds.
+	\end{align*}
+	Then using $\nabla f(x^{*})=0$, we have
+	\begin{align*}
+	x_{k+1}-x^{*}& = x_{k}-x^{*}-\nabla^2f(x_k)^{-1}\nabla f(x_k)\\
+	&=x_{k}-x^{*}-\nabla^2f(x_k)^{-1}\int_{0}^{1}\nabla^2f(x^{*}+s(x_k - x^{*}))(x_k-x^{*})ds\\
+	&=\nabla^2f(x_k)^{-1}\left(\nabla^2f(x_k)(x_k-x^{*})-\int_{0}^{1}\nabla^2f(x^{*}+s(x_k - x^{*}))(x_k-x^{*})ds\right)
+	\end{align*}
+	By Lipschitz Hessian, we have
+	\begin{align*}
+	\left\|x_{k+1}-x^{*}\right\| \leq \left\|\nabla^2f(x_k)^{-1}\right\|_2 \frac{M}{2}\left\|x_{k+1}-x^{*}\right\|^2,
+	\end{align*}
+	then using strong convexity assumption of $f$ in $x^{*}$ and $\left\|x_{k}-x^{*}\right\| \leq \frac{\mu}{2 M}$,
+	$$
+	\nabla^{2} f\left(x_{k}\right) \succeq \nabla^{2} f\left(x^{*}\right)-M\left\|x_{k}-x^{*}\right\| \mathrm{I}_{n} \succeq\left(\mu-M\left\|x_{k}-x^{*}\right\|\right) \mathrm{I}_{n} \succeq \frac{\mu}{2} \mathrm{I}_{n}.
+	$$
+	Then the result follows.
+\end{proof}
 \bibliography{docbib}
 \end{document}

@@ -1,14 +1,19 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{12}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Boyd et~al.(2004)Boyd, Boyd, and Vandenberghe]{boyd2004convex}
-S.~Boyd, S.~P. Boyd, and L.~Vandenberghe.
+\bibitem[Boyd and Vandenberghe(2004)]{boyd2004convex}
+S.~Boyd and L.~Vandenberghe.
 \newblock \emph{Convex optimization}.
 \newblock Cambridge university press, 2004.
+
+\bibitem[Bubeck(2014)]{bubeck2014theory}
+S.~Bubeck.
+\newblock Theory of convex optimization for machine learning.
+\newblock \emph{arXiv preprint arXiv:1405.4980}, 15, 2014.
 
 \bibitem[Cai et~al.(2011)Cai, Liu, and Luo]{cai2011constrained}
 T.~Cai, W.~Liu, and X.~Luo.
