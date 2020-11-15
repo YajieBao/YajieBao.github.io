@@ -1,402 +1,54 @@
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-
-
-
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
 <title>Yajie Bao</title>
-
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/journal.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
-
-
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
-
-
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-</style>
-
-
-<style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 61px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h2 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h3 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h4 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h5 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.section h6 {
-  padding-top: 66px;
-  margin-top: -66px;
-}
-.dropdown-submenu {
-  position: relative;
-}
-.dropdown-submenu>.dropdown-menu {
-  top: 0;
-  left: 100%;
-  margin-top: -6px;
-  margin-left: -1px;
-  border-radius: 0 6px 6px 6px;
-}
-.dropdown-submenu:hover>.dropdown-menu {
-  display: block;
-}
-.dropdown-submenu>a:after {
-  display: block;
-  content: " ";
-  float: right;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
-  border-width: 5px 0 5px 5px;
-  border-left-color: #cccccc;
-  margin-top: 5px;
-  margin-right: -10px;
-}
-.dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
-}
-.dropdown-submenu.pull-left {
-  float: none;
-}
-.dropdown-submenu.pull-left>.dropdown-menu {
-  left: -100%;
-  margin-left: 10px;
-  border-radius: 6px 0 6px 6px;
-}
-</style>
-
-<script>
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.parent().addClass('active');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-});
-</script>
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-
-
-
 </head>
-
 <body>
-
-
-<div class="container-fluid main-container">
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html"></a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">
-    <span class="fa fa-home"></span>
-     
-    Home
-  </a>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Yajie Bao</h1>
-
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+<td id="layout-menu">
+<div class="menu-category">Yajie Bao</div>
+<div class="menu-item"><a href="index.html" class="current">Home</a></div>
+<div class="menu-item"><a href="research.html">Research</a></div>
+</td>
+<td id="layout-content">
+<div id="toptitle">
+<h1>Yajie Bao</h1>
 </div>
-
-
-<div class="row-wrap">
-<div class="row1">
-<h2 id="about-me">About me</h2>
-<p>I’m currently a first-year Ph.D. student in Statistics at <a href="http://www.math.sjtu.edu.cn/">Shanghai Jiao Tong University</a>. I received my B.S. degree in Statistics from <a href="http://stat.ecnu.edu.cn">East China Normal University</a>.</p>
-<h2 id="contact">Contact</h2>
-<p><strong>Address:</strong> Room 505 (Table 17), No.6 Science Building, Shanghai Jiao Tong University (Minhang District)</p>
-<p><strong>Email:</strong> <a href="mailto:baoyajie2019stat@sjtu.edu.cn" class="email">baoyajie2019stat@sjtu.edu.cn</a></p>
-<p><strong>Mobile:</strong> (+86)13162161186</p>
-</div>
-<div class="row2">
-<p><img src="figs/gulangyu.jpeg" style="width:100%; margin-left: 5px; 
-margin-top: 20px; margin-bottom: 0px" align="left"></p>
-</div>
-</div>
-<div id="research-interests" class="section level2">
+<table class="imgtable"><tr><td>
+<img src="figs/gulangyu.jpeg" alt="Me" width="300px" height="230px" />&nbsp;</td>
+<td align="left"><p>PhD candidate, Statistics<br />
+<a href="http://www.math.sjtu.edu.cn/">School of Mathematics</a><br /> 
+<a href="http://www.math.sjtu.edu.cn/">Shanghai Jiao Tong University</a><br />
+Advisor: <a href="http://www.math.sjtu.edu.cn/faculty/show.php?id=35">Dong Han</a><br />
+Email: baoyajie2019stat@sjtu.edu.cn</p>
+</td></tr></table>
+<h2>About Me</h2>
+<p>I'm currently a second-year Ph.D. student in Statistics at <a href="http://www.math.sjtu.edu.cn/">Shanghai Jiao Tong University</a>. I received my B.S. degree in Statistics from <a href="http://stat.ecnu.edu.cn">East China Normal University</a>.<br /></p>
 <h2>Research interests</h2>
 <ul>
-<li>High-Dimensional statistics</li>
-<li>Distributed inference</li>
-<li>Statistical inference of privacy-preserving data</li>
-<li>Online learning</li>
+<li><p>High-Dimensional statistics</p>
+</li>
+<li><p>Machine learning</p>
+</li>
+<li><p>Statistical inference of privacy-preserving data</p>
+</li>
 </ul>
-</div>
-<div id="teaching" class="section level2">
 <h2>Teaching</h2>
 <ul>
-<li>Teaching Assistant Fall 2019, <strong>Probability Theory and Stochastic Process</strong></li>
-<li>Recitation Instructor Spring 2020, <strong>Mathematical Statistics</strong></li>
-<li>Recitation Instructor Fall 2020, <strong>Probability Theory</strong></li>
+<li><p>Teaching Assistant Fall 2019, Probability Theory and Stochastic Process</p>
+</li>
+<li><p>Recitation Instructor Spring 2020, Mathematical Statistics</p>
+</li>
+<li><p>Recitation Instructor Fall 2020, Probability Theor</p>
+</li>
 </ul>
-</div>
-<div id="research" class="section level2">
-<h2>Research</h2>
-<p><strong>B.S. degree thesis:</strong> A Generalized Two-Urn model (in Chinese) <a href="./docs/Thesis.pdf">PDF</a></p>
-</div>
-<div id="writings" class="section level2">
-<h2>Writings</h2>
-<div id="notes-of-mathematical-statistics" class="section level3">
-<h3>Notes of Mathematical Statistics</h3>
-<ul>
-<li>Probability Tools <a href="./docs/pt.pdf">PDF</a></li>
-<li>Theoretical Results of Lasso Solutions <a href="./writings/Lasso/document.pdf">PDF</a></li>
-<li>Stochastic Optimization <a href="./writings/Stochastic%20Optimization/document.pdf">PDF</a></li>
-</ul>
-</div>
-<div id="high-dimensional-statistics" class="section level3">
-<h3>High-dimensional Statistics</h3>
-<ul>
-<li>Step into High-dimensional Statistics: Sparse Mean Estimation <a href="./writings/Sparse%20estimation/document.pdf">PDF</a></li>
-<li>Linear Regression and M-estimator for Diverging <span class="math inline">\(p\)</span> <a href="./writings/Regression/document.pdf">PDF</a></li>
-</ul>
-</div>
-<div id="notes-of-optimization" class="section level3">
-<h3>Notes of optimization</h3>
-<ul>
-<li>Convex optimization <a href="./docs/Convex%20Optimization.pdf">PDF</a></li>
-</ul>
-</div>
-</div>
-
-
-
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
-
-
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
+</td>
+</tr>
+</table>
 </body>
 </html>
