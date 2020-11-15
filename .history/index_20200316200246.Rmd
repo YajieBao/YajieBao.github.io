@@ -32,7 +32,6 @@ margin-top: 20px; margin-bottom: 0px" align="left">
 
   - Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
   - Recitation Instructor Spring 2020, **Mathematical Statistics**
-  - Recitation Instructor Fall 2020, **Probability Theory**
 
 ## Research
 

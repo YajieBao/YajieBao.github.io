@@ -6,6 +6,9 @@ navbar:
     - text: "Home"
       icon: fa-home
       href: index.html
+    - text: "Blogs"
+      icon: ion-laptop
+      href: Blogs.html
     - text: "Projects"
       icon: ion-star
       href: projects.html
