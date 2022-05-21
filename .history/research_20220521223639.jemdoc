@@ -2,24 +2,24 @@
 = Research
 
 == Technical Report
-- [https://arxiv.org/abs/2203.06371 Varying Coefficient Linear Discriminant Analysis for Dynamic Data]\n
+1. [https://arxiv.org/abs/2203.06371 Varying Coefficient Linear Discriminant Analysis for Dynamic Data]\n
 Yajie Bao and Yuyang Liu, arXiv:2203.06371.
 
-- Semi-Profiled Distributed Estimation for High-Dimensional Partially Linear Model\n
+2. Semi-Profiled Distributed Estimation for High-Dimensional Partially Linear Model\n
 Yajie Bao and Haojie Ren, submitted.
 
 
 == Publications
 - Fast Composite Optimization and Statistical Recovery in Federated Learning\n
-Yajie Bao, Michael Crawshaw, Shan Luo and Mingrui Liu.\n
+Yajie Bao, Michael Crawshaw, Shan Luo and Mingrui Liu\n
  **International Conference on Machine Learning (ICML)**, 2022, to appear.
 
 - Byzantine-Tolerant Distributed Multiclass Sparse Linear Discriminant Analysis\n
-Yajie Bao, Weidong Liu, Xiaojun Mao and Weijia Xiong.\n
+Yajie Bao, Weidong Liu, Xiaojun Mao and Weijia Xiong\n 
 **Conference on Uncertainty in Artificial Intelligence (UAI)**, 2022, to appear.
 
 - [http://proceedings.mlr.press/v130/bao21a.html One-Round Communication Efficient Distributed M-Estimation]\n
-Yajie Bao and Weijia Xiong.\n
+Yajie Bao and Weijia Xiong\n
 **International Conference on Artificial Intelligence and Statistics (AISTATS)**, 2021.
 
 

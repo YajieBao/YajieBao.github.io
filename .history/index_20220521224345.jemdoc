@@ -2,12 +2,13 @@
 = Yajie Bao
 
 ~~~
-{}{img_left}{figs/gulangyu.jpeg}{Me}{400}{300}
+{}{img_left}{figs/gulangyu.jpeg}{Me}{300}{225}
 PhD candidate, Statistics\n
 [http://www.math.sjtu.edu.cn/ School of Mathematics]\n 
 [http://www.math.sjtu.edu.cn/ Shanghai Jiao Tong University]\n
 Advisor: [http://www.math.sjtu.edu.cn/faculty/show.php?id=35 Dong Han]\n
-Email: baoyajie2019stat@sjtu.edu.cn
+Email: baoyajie2019stat@sjtu.edu.cn\n
+[Google scholar https://scholar.google.com/citations?user=1n_aUsIAAAAJ&hl=en]
 ~~~
 
 == About Me
@@ -15,9 +16,10 @@ I'm currently a third-year Ph.D. student in Statistics at [http://www.math.sjtu.
 
 == Research interests
 - Federated learning
-- Statistical inference in the modern computing environment
+- Comformal inference
 
 == Teaching
-- Teaching Assistant Fall 2019, *Probability Theory and Stochastic Process*\n
-- Recitation Instructor Spring 2020, *Mathematical Statistics*\n
-- Recitation Instructor Fall 2020, *Probability Theory*\n
+- Teaching Assistant, Fall 2019, *Probability Theory and Stochastic Process*\n
+- Recitation Instructor, Spring 2020, *Mathematical Statistics*\n
+- Recitation Instructor, Fall 2020, *Probability Theory*\n
+- Recitation Instructor, Spring 2021, *Statistical Learning*\n
