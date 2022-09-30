@@ -1,15 +1,16 @@
 # jemdoc: menu{MENU}{index.html}, nofooter
 = Research
 
-== Technical Report
-- [https://arxiv.org/abs/2203.06371 Varying Coefficient Linear Discriminant Analysis for Dynamic Data]\n
-Yajie Bao and Yuyang Liu, arXiv:2203.06371.
+== Statistical methods
 
 - Semi-Profiled Distributed Estimation for High-Dimensional Partially Linear Model\n
 Yajie Bao and Haojie Ren, submitted.
 
+- [https://arxiv.org/abs/2203.06371 Varying Coefficient Linear Discriminant Analysis for Dynamic Data]\n
+Yajie Bao and Yuyang Liu, Electronic Journal of Statistics, to appear.
 
-== Publications
+
+== Machine Learning
 - [https://arxiv.org/abs/2207.08204 Fast Composite Optimization and Statistical Recovery in Federated Learning]\n
 Yajie Bao, Michael Crawshaw, Shan Luo and Mingrui Liu.\n
  **International Conference on Machine Learning (ICML)**, 2022.
