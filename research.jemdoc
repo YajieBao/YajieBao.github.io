@@ -17,7 +17,7 @@ Yajie Bao and Yuyang Liu.\n
 
 
 == Machine Learning
-- Global Convergence Analysis of Local SGD for One-hidden-layer Convolutional Neural Network without Overparameterization\n
+- Global Convergence Analysis of Local SGD for Two-layer Neural Network without Overparameterization\n
 Yajie Bao, Amarda Shehu, Mingrui Liu.\n
 /Advances in Neural Information Processing Systems (NeurIPS)/, 2023.
 

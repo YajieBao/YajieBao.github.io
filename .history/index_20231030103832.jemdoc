@@ -12,9 +12,9 @@ Email: baoyajie2019stat@sjtu.edu.cn\n
 ~~~
 
 == About Me
-I am currently a final-year Ph.D. student in Statistics at [http://www.math.sjtu.edu.cn/ Shanghai Jiao Tong University]. Before coming to SJTU, I received my B.S. degree in Statistics from [http://stat.ecnu.edu.cn East China Normal University].\n
-
-Now I'm working with [https://mingrliu.github.io/index.html Mingrui Liu] on federated learning and deep learning theory. I'm also a member in [https://sites.google.com/view/haojieren Haojie Ren]'s research group on selective inference.
+I am currently a final-year Ph.D. student in Statistics at [http://www.math.sjtu.edu.cn/ Shanghai Jiao Tong University]. Before coming to SJTU, I received my B.S. degree in Statistics from [http://stat.ecnu.edu.cn East China Normal University].
+Now I'm working with [https://mingrliu.github.io/index.html Mingrui Liu] on federated learning and deep learning theory. 
+I'm also a member in [https://sites.google.com/view/haojieren Haojie Ren]'s research group on selective inference. I visited Prof. [http://web.stat.nankai.edu.cn/chlzou/ Changliang Zou]'s group in Nankai University from April-August, 2023.
 
 == Research interests
 - Comformal inference
@@ -22,13 +22,13 @@ Now I'm working with [https://mingrliu.github.io/index.html Mingrui Liu] on fede
 - Federated learning
 
 == Recent papers
-- Global Convergence Analysis of Local SGD for One-hidden-layer Convolutional Neural Network without Overparameterization\n
+- Global Convergence Analysis of Local SGD for Two-layer Neural Network without Overparameterization\n
 Yajie Bao, Amarda Shehu, Mingrui Liu.\n
-/Neural Information Processing Systems (NeurIPS)/, 2023, to appear.
+/Advances in Neural Information Processing Systems (NeurIPS)/, 2023, to appear.
 
 -  Federated Learning with Client Subsampling, Data Heterogeneity, and Unbounded Smoothness: A New Algorithm and Lower Bounds\n
 Michael Crawshaw, Yajie Bao and Mingrui Liu.\n
-/Neural Information Processing Systems (NeurIPS)/, 2023, to appear.
+/Advances in Neural Information Processing Systems (NeurIPS)/, 2023, to appear.
 
 - [https://arxiv.org/pdf/2301.00584.pdf Selective Conformal Inference with FCR Control]\n
 Yajie Bao, Yuyang Huo, Haojie Ren and Changliang Zou.\n
@@ -36,4 +36,4 @@ arxiv, 2023+.
 
 
 == Service
-Reviwer: ICML 2022; NeurIPS 2022, 2023, ICLR 2024, AISTATS 2024
+Reviwer: ICML 2022; NeurIPS 2022, 2023; ICLR 2024; AISTATS 2024

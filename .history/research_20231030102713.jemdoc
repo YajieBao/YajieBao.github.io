@@ -17,13 +17,13 @@ Yajie Bao and Yuyang Liu.\n
 
 
 == Machine Learning
-- Global Convergence Analysis of Local SGD for One-hidden-layer Convolutional Neural Network without Overparameterization\n
+- Global Convergence Analysis of Local SGD for Two-layer Neural Network without Overparameterization\n
 Yajie Bao, Amarda Shehu, Mingrui Liu.\n
-/Neural Information Processing Systems (NeurIPS)/, 2023.
+/Advances in Neural Information Processing Systems (NeurIPS)/, 2023.
 
 -  Federated Learning with Client Subsampling, Data Heterogeneity, and Unbounded Smoothness: A New Algorithm and Lower Bounds\n
 Michael Crawshaw, Yajie Bao and Mingrui Liu.\n
-/Neural Information Processing Systems (NeurIPS)/, 2023.
+/Advances in Neural Information Processing Systems (NeurIPS)/, 2023.
 
 - [https://openreview.net/pdf?id=ytZIYmztET EPISODE: Episodic Gradient Clipping with Periodic Resampled Corrections for Federated Learning with Heterogeneous Data]\n
 Michael Crawshaw, Yajie Bao and Mingrui Liu.\n

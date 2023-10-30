@@ -1,0 +1,12 @@
+name: "Yajie Bao"
+output_dir: "."
+navbar:
+  color: #4169E1;
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+output:
+  html_document:
+    theme: journal
+    css: style.css

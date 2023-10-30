@@ -1,0 +1,55 @@
+---
+title: "Yajie Bao"
+---
+
+<div class="row-wrap">
+<div class = "row1">
+## About me 
+I'm currently a first-year Ph.D. student in Statistics at [Shanghai Jiao Tong University](http://www.math.sjtu.edu.cn/). I received my B.S. degree in Statistics from [East China Normal University](http://stat.ecnu.edu.cn). 
+
+## Contact 
+
+__Address:__ Room 505 (Table 17), No.6 Science Building, Shanghai Jiao Tong University (Minhang District)
+
+__Email:__ baoyajie2019stat@sjtu.edu.cn
+
+__Mobile:__ (+86)13162161186
+</div>
+
+<div class = "row2">
+<img src="./figs/gulangyu.jpeg" style="width:100%; margin-left: 5px; 
+margin-top: 20px; margin-bottom: 0px" align="left">
+</div>
+</div>
+## Research interests
+
+  - High-Dimensional statistics
+  - Distributed inference
+  - Statistical inference of privacy-preserving data
+  - Online learning
+
+## Teaching
+
+  - Teaching Assistant Fall 2019, **Probability Theory and Stochastic Process**
+  - Recitation Instructor Spring 2020, **Mathematical Statistics**
+
+## Research
+
+__B.S. degree thesis:__ A Generalized Two-Urn model (in Chinese) [PDF](./docs/Thesis.pdf)
+
+## Writings
+
+### Notes of Mathematical Statistics
+
+- Probability Tools [PDF](./docs/pt.pdf)
+- Theoretical Results of Lasso Solutions [PDF](./writings/Lasso/document.pdf)
+- Stochastic Optimization [PDF](./writings/Stochastic Optimization/document.pdf)
+
+### High-dimensional Statistics
+
+- Step into High-dimensional Statistics: Sparse Mean Estimation [PDF](./writings/Sparse estimation/document.pdf)
+- Linear Regression and M-estimator for Diverging $p$ [PDF](./writings/Regression/document.pdf)
+
+### Notes of optimization
+
+  - Convex optimization [PDF](./docs/Convex Optimization.pdf)
