@@ -13,7 +13,7 @@ Email: baoyajie2019stat@sjtu.edu.cn\n
 
 == About Me
 I am currently a final-year Ph.D. student in Statistics at [http://www.math.sjtu.edu.cn/ Shanghai Jiao Tong University]. Before coming to SJTU, I received my B.S. degree in Statistics from [http://stat.ecnu.edu.cn East China Normal University].
-I have been working with [https://mingrliu.github.io/index.html Mingrui Liu] on federated learning and deep learning theory since November 2021. In the Department of Statistics at SJTU, I'm a member of [https://sites.google.com/view/haojieren Haojie Ren]'s research group on conformal inference. 
+I have been working with [https://mingrliu.github.io/index.html Mingrui Liu] on federated learning and deep learning theory since November 2021. At SJTU, I'm a member of [https://sites.google.com/view/haojieren Haojie Ren]'s research group on conformal inference. 
 I was fortunate to visit Prof. [http://web.stat.nankai.edu.cn/chlzou/ Changliang Zou]'s group at Nankai University from April-August, 2023.
 
 == Research interests
@@ -22,6 +22,10 @@ I was fortunate to visit Prof. [http://web.stat.nankai.edu.cn/chlzou/ Changliang
 - Federated learning
 
 == Recent papers
+- [https://arxiv.org/pdf/2301.00584.pdf Selective conformal inference with  false coverage-statement rate control]\n
+Yajie Bao, Yuyang Huo, Haojie Ren and Changliang Zou.\n
+Biometrika, accepted.
+
 - [https://openreview.net/pdf?id=gVLKXT9JwG Global Convergence Analysis of Local SGD for Two-layer Neural Network without Overparameterization]\n
 Yajie Bao, Amarda Shehu, Mingrui Liu.\n
 /Advances in Neural Information Processing Systems (NeurIPS)/, 2023.
@@ -30,10 +34,6 @@ Yajie Bao, Amarda Shehu, Mingrui Liu.\n
 Michael Crawshaw, Yajie Bao and Mingrui Liu.\n
 /Advances in Neural Information Processing Systems (NeurIPS)/, 2023.
 
-- [https://arxiv.org/pdf/2301.00584.pdf Selective Conformal Inference with FCR Control]\n
-Yajie Bao, Yuyang Huo, Haojie Ren and Changliang Zou.\n
-arxiv, 2023+.
-
 
 == Service
-Reviwer: ICML 2022; NeurIPS 2022, 2023; ICLR 2024; AISTATS 2024.
+Reviewer: ICML 2022; NeurIPS 2022, 2023; ICLR 2024; AISTATS 2024.
