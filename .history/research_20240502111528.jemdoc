@@ -1,11 +1,16 @@
 # jemdoc: menu{MENU}{index.html}, nofooter
 = Research
 
-== Statistical Methods
-
-- [https://arxiv.org/pdf/2301.00584.pdf Selective Conformal Inference with False Coverage-statement Rate Control]\n
+== Preprints
+- [https://arxiv.org/abs/2403.07728 CAP: A General Algorithm for Online Selective Conformal Prediction with FCR Control]\n
 Yajie Bao, Yuyang Huo, Haojie Ren and Changliang Zou.\n
-/Biometrika/, 2024, accepted.
+arxiv, 2024+.
+
+== Journal publication
+
+- [https://doi.org/10.1093/biomet/asae010 Selective Conformal Inference with False Coverage-statement Rate Control]\n
+Yajie Bao, Yuyang Huo, Haojie Ren and Changliang Zou.\n
+/Biometrika/, 2024.
 
 - [https://www.sciencedirect.com/science/article/abs/pii/S0167947323001354 Semi-Profiled Distributed Estimation for High-Dimensional Partially Linear Model]\n
 Yajie Bao and Haojie Ren.\n
@@ -16,7 +21,11 @@ Yajie Bao and Yuyang Liu.\n
 /Electronic Journal of Statistics/, 2022.
 
 
-== Machine Learning
+== Conference publication
+- Provable Benefits of Local Steps in Heterogeneous Federated Learning for Neural Networks: A Feature Learning Perspective\n
+Yajie Bao, Michael Crawshaw and Mingrui Liu.\n
+International Conference on Machine Learning (ICML), 2024.
+
 - [https://openreview.net/pdf?id=gVLKXT9JwG Global Convergence Analysis of Local SGD for Two-layer Neural Network without Overparameterization]\n
 Yajie Bao, Amarda Shehu, Mingrui Liu.\n
 /Advances in Neural Information Processing Systems (NeurIPS)/, 2023.
