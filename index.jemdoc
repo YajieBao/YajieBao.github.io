@@ -20,6 +20,10 @@ Here is my [https://scholar.google.com/citations?user=1n_aUsIAAAAJ&hl=en Google 
 - Federated learning
 
 == Recent papers
+- Conformal Prediction with Cellwise Outliers: A Detect-then-Impute Approach\n
+Qian Peng, Yajie Bao, Haojie Ren, Zhaojun Wang, Changliang Zou.\n
+/International Conference on Machine Learning (ICML)/, 2025.
+
 - [https://arxiv.org/pdf/2502.00818 Error-quantified Conformal Inference for Time Series]\n
 Junxi Wu, Dongjian Hu, Yajie Bao, Shu-Tao Xia, Changliang Zou.\n
 /International Conference on Learning Representations (ICLR)/, 2025.
