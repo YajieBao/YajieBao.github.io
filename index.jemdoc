@@ -20,6 +20,10 @@ Here is my [https://scholar.google.com/citations?user=1n_aUsIAAAAJ&hl=en Google 
 - Federated learning
 
 == Recent papers
+- [https://arxiv.org/pdf/2507.04716 Optimal Model Selection for Conformalized Robust Optimization]\n
+Yajie Bao, Yang Hu, Haojie Ren, Peng Zhao and Changliang Zou.\n
+arxiv, 2025+.
+
 - [https://arxiv.org/pdf/2505.04986 Conformal Prediction with Cellwise Outliers: A Detect-then-Impute Approach]\n
 Qian Peng, Yajie Bao, Haojie Ren, Zhaojun Wang, Changliang Zou.\n
 /International Conference on Machine Learning (ICML)/, 2025.
@@ -27,10 +31,6 @@ Qian Peng, Yajie Bao, Haojie Ren, Zhaojun Wang, Changliang Zou.\n
 - [https://arxiv.org/pdf/2502.00818 Error-quantified Conformal Inference for Time Series]\n
 Junxi Wu, Dongjian Hu, Yajie Bao, Shu-Tao Xia, Changliang Zou.\n
 /International Conference on Learning Representations (ICLR)/, 2025.
-
-- [https://openreview.net/pdf?id=yHRxnhKyEJ Provable Benefits of Local Steps in Heterogeneous Federated Learning for Neural Networks: A Feature Learning Perspective]\n
-Yajie Bao, Michael Crawshaw and Mingrui Liu.\n
-International Conference on Machine Learning (ICML), 2024.
 
 - [https://arxiv.org/abs/2403.07728 CAP: A General Algorithm for Online Selective Conformal Prediction with FCR Control]\n
 Yajie Bao, Yuyang Huo, Haojie Ren and Changliang Zou.\n
