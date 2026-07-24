@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1f3b4d">
+    {% seo %}
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <div class="wrapper">
+      <header class="profile">
+        <a class="portrait-link" href="{{ '/' | relative_url }}" aria-label="Yajie Bao, home">
+          <img class="portrait" src="{{ site.logo | relative_url }}" alt="Portrait of Yajie Bao">
+        </a>
+
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <p class="profile-note">Statistics · Machine Learning</p>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a {% if page.url == '/' %}class="current"{% endif %} href="{{ '/' | relative_url }}">Home</a>
+          <a {% if page.url contains '/research' %}class="current"{% endif %} href="{{ '/research/' | relative_url }}">Research</a>
+        </nav>
+
+        <div class="profile-links">
+          <a href="mailto:{{ site.email }}">Email: {{ site.email }}</a>
+          <a href="{{ site.google_scholar }}">Google Scholar</a>
+        </div>
+      </header>
+
+      <main id="content">
+        {{ content }}
+      </main>
+
+      <footer>
+        <p>© {{ 'now' | date: '%Y' }} Yajie Bao</p>
+        <p>Built with Jekyll.</p>
+      </footer>
+    </div>
+  </body>
+</html>

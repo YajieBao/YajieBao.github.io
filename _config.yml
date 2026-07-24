@@ -1,0 +1,27 @@
+title: Yajie Bao
+description: Research in conformal prediction, data-driven decision-making, and selective inference.
+url: "https://yajiebao.github.io"
+baseurl: ""
+lang: en
+timezone: Asia/Shanghai
+
+logo: /figs/me_crby_xiaoyue.jpeg
+email: yajiebao@nankai.edu.cn
+google_scholar: https://scholar.google.com/citations?user=1n_aUsIAAAAJ&hl=en
+
+theme: jekyll-theme-minimal
+plugins:
+  - jekyll-seo-tag
+
+markdown: kramdown
+permalink: pretty
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - MENU
+  - index.jemdoc
+  - research.jemdoc
+  - jemdoc.py
+  - jemdoc.css
